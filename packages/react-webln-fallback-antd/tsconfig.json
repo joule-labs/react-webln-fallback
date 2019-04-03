@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "strict": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "lib": ["dom", "es2017"],
+    "baseUrl": "."
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

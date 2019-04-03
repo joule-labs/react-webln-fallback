@@ -1,0 +1,7 @@
+node_modules
+dist
+cjs
+esm
+umd
+*.log
+.rpt2_cache

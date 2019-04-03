@@ -1,0 +1,42 @@
+{
+  "name": "react-webln-fallback-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack -w",
+    "build": "NODE_ENV=production webpack",
+    "publish": "echo 'TBD'"
+  },
+  "dependencies": {
+    "@babel/core": "7.4.0",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.4.0",
+    "@babel/preset-env": "7.4.2",
+    "@babel/preset-react": "7.0.0",
+    "@material-ui/core": "3.9.3",
+    "antd": "3.16.1",
+    "babel-loader": "8.0.5",
+    "core-js": "2.6.5",
+    "css-loader": "2.1.1",
+    "html-webpack-plugin": "3.2.0",
+    "less": "3.9.0",
+    "less-loader": "4.1.0",
+    "mini-css-extract-plugin": "0.5.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "semantic-ui-react": "0.86.0",
+    "style-loader": "0.23.1",
+    "ts-loader": "5.3.3",
+    "typescript": "3.4.1",
+    "webln": "0.2.0",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "16.8.10",
+    "@types/react-dom": "16.8.3",
+    "gh-pages": "2.0.1",
+    "webpack-dev-server": "3.2.1"
+  }
+}
