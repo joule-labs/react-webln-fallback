@@ -20,7 +20,7 @@ export default class SendPayment extends React.PureComponent<{}, State> {
           <Input.TextArea onChange={this.handleChange} value={paymentRequest} rows={5} />
         </Form.Item>
         <Button size="large" type="primary" htmlType="submit" disabled={!paymentRequest} block>
-          Call{' '}<code>webln.sendPayment</code>
+          Call <code>webln.sendPayment</code>
         </Button>
       </Form>
     );

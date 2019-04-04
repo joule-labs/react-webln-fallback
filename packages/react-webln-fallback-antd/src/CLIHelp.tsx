@@ -1,58 +1,8 @@
 import React from 'react';
 import { Input, Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
-
-export enum Command {
-  SEND = 'SEND',
-  INVOICE = 'INVOICE',
-  SIGN = 'SIGN',
-  VERIFY = 'VERIFY',
-};
-
-enum NodeType {
-  LND = 'LND',
-  C_LIGHTNING = 'C_LIGHTNING',
-  ECLAIR = 'ECLAIR',
-}
-
-interface NodeInfo {
-  name: string;
-  cli: string;
-  commands: { [key in Command]: (args: any) => string };
-}
-
-const nodeInfo: { [key in NodeType]: NodeInfo } = {
-  [NodeType.LND]: {
-    name: 'LND',
-    cli: 'lncli',
-    commands: {
-      [Command.SEND]: (args: any) => `sendpayment ${args[0]}`,
-      [Command.INVOICE]: (_: any) => 'addinvoice',
-      [Command.SIGN]: (_: any) => 'signmessage',
-      [Command.VERIFY]: (_: any) => 'verifymessage',
-    },
-  },
-  [NodeType.C_LIGHTNING]: {
-    name: 'C-Lightning',
-    cli: 'lightning-cli',
-    commands: {
-      [Command.SEND]: (args: any) => `sendpayment ${args[0]}`,
-      [Command.INVOICE]: (_: any) => 'addinvoice',
-      [Command.SIGN]: () => 'N/A (Unsupported)',
-      [Command.VERIFY]: () => 'N/A (Unsupported)',
-    },
-  },
-  [NodeType.ECLAIR]: {
-    name: 'Eclair',
-    cli: 'eclair-cli',
-    commands: {
-      [Command.SEND]: (args: any) => `send ${args[0]}`,
-      [Command.INVOICE]: (_: any) => 'receive',
-      [Command.SIGN]: () => 'N/A (Unsupported)',
-      [Command.VERIFY]: () => 'N/A (Unsupported)',
-    },
-  },
-}
+import { Command, NodeType, nodeInfo, getCliCommand } from './util/cli';
+import TextArea from 'antd/lib/input/TextArea';
 
 interface Props {
   command: Command;
@@ -87,7 +37,7 @@ export default class CLIHelp extends React.PureComponent<Props, State> {
             ))}
           </Radio.Group>
         </div>
-        <Input readOnly value={this.makeCommand()} />
+        {this.renderCommandInput()}
       </div>
     );
   }
@@ -96,10 +46,20 @@ export default class CLIHelp extends React.PureComponent<Props, State> {
     this.setState({ nodeType: ev.target.value });
   };
 
-  private makeCommand = () => {
+  private renderCommandInput = () => {
     const { command, args } = this.props;
     const { nodeType } = this.state;
-    return `${nodeInfo[nodeType].cli} ${nodeInfo[nodeType].commands[command](args)}`
+    const cmd = getCliCommand(nodeType, command, args);
+    if (cmd) {
+      if (cmd.includes('\n')) {
+        return <TextArea readOnly value={cmd} rows={5} />;
+      }
+      else {
+        return <Input readOnly value={cmd} />;
+      }
+    } else {
+      return <Input disabled value="N/A (Unsupported)" />;
+    }
   };
 }
 

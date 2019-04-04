@@ -1,9 +1,9 @@
-import React, { ReactHTML } from 'react';
-import { Modal, Row, Col, Input, Button, Icon, Divider } from 'antd';
+import React from 'react';
+import { Modal, Input, Divider } from 'antd';
 import { MethodComponentProps } from 'react-webln-fallback';
 import { WebLNProvider, RequestInvoiceResponse, RequestInvoiceArgs } from 'webln';
-import { decode } from 'bolt11';
-import CLIHelp, { Command } from './CLIHelp';
+import CLIHelp from './CLIHelp';
+import { Command } from './util/cli';
 
 function isInvoiceArgsObject(args: any): args is RequestInvoiceArgs {
   return !(args instanceof String || args instanceof Number);
@@ -22,7 +22,6 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
 
   render() {
     const { args } = this.props;
-    const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
     const { paymentRequest } = this.state;
 
     return (
@@ -32,6 +31,7 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
         onCancel={this.handleReject}
         okText="Submit invoice"
         okButtonDisabled={!paymentRequest}
+        maskClosable={false}
         visible
       >
         {this.renderInstructions()}

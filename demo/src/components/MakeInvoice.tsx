@@ -107,7 +107,7 @@ export default class MakeInvoice extends React.PureComponent<{}, State> {
               htmlType="submit"
               block
             >
-              Make Invoice
+              Call <code>webln.makeInvoice</code>
             </Button>
           </Form>
         </Col>
