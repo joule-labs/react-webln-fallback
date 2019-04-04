@@ -5,26 +5,12 @@ import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
 import CLIHelp, { Command } from './CLIHelp';
 
-enum CLIType {
-  LND = 'LND',
-  C_LIGHTNING = 'C-Lightning',
-  ECLAIR = 'Eclair',
-}
-
 // Add SVG types to QRCode since it passes them through
 const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
 type Props = MethodComponentProps;
 
-interface State {
-  cliType: CLIType;
-}
-
-export default class SendPayment extends React.PureComponent<Props, State> {
-  state: State = {
-    cliType: CLIType.LND,
-  };
-
+export default class SendPayment extends React.PureComponent<Props> {
   render() {
     const { args } = this.props;
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
