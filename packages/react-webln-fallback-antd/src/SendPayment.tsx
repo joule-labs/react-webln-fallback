@@ -1,10 +1,9 @@
 import React from 'react';
 import { Modal, Row, Col, Input, Button, Icon, Divider } from 'antd';
-import { MethodComponentProps } from 'react-webln-fallback';
+import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
 import CLIHelp from './CLIHelp';
-import { Command } from './util/cli';
 
 // Add SVG types to QRCode since it passes them through
 const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
@@ -46,7 +45,7 @@ export default class SendPayment extends React.PureComponent<Props> {
           </Col>
         </Row>
         <Divider>or</Divider>
-        <CLIHelp command={Command.SEND} args={args} />
+        <CLIHelp method={WebLNMethod.sendPayment} args={args} />
       </Modal>
     );
   }

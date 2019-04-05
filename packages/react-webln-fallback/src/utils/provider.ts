@@ -1,6 +1,10 @@
+// =======================================================================
+// WebLN provider fallback class
+// =======================================================================
+
 import { WebLNProvider } from 'webln';
 import { UnsupportedMethodError } from 'webln/lib/errors';
-import { WebLNMethod } from './types';
+import { WebLNMethod } from '../types';
 
 // TODO: Better way to type this with less copypaste?
 export type FallbackMethodHandler = {

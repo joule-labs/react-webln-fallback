@@ -1,11 +1,11 @@
 import React from 'react';
 import { Input, Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
-import { Command, NodeType, nodeInfo, getCliCommand } from './util/cli';
 import TextArea from 'antd/lib/input/TextArea';
+import { WebLNMethod, NodeType, nodeInfo, getCliCommand } from 'react-webln-fallback';
 
 interface Props {
-  command: Command;
+  method: WebLNMethod;
   args: any;
 }
 
@@ -47,9 +47,9 @@ export default class CLIHelp extends React.PureComponent<Props, State> {
   };
 
   private renderCommandInput = () => {
-    const { command, args } = this.props;
+    const { method, args } = this.props;
     const { nodeType } = this.state;
-    const cmd = getCliCommand(nodeType, command, args);
+    const cmd = getCliCommand(nodeType, method, args);
     if (cmd) {
       if (cmd.includes('\n')) {
         return <TextArea readOnly value={cmd} rows={5} />;

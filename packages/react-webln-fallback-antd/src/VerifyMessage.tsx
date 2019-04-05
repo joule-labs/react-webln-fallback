@@ -1,9 +1,7 @@
 import React from 'react';
-import { Modal, Input, Divider } from 'antd';
-import { MethodComponentProps } from 'react-webln-fallback';
-import { WebLNProvider, SignMessageResponse } from 'webln';
+import { Modal } from 'antd';
+import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback';
 import CLIHelp from './CLIHelp';
-import { Command } from './util/cli';
 
 type Props = MethodComponentProps;
 
@@ -20,7 +18,7 @@ export default class VerifyMessage extends React.PureComponent<Props> {
         visible
       >
         <p>Run the following command to verify the integrity of the signed message</p>
-        <CLIHelp command={Command.VERIFY} args={args} />
+        <CLIHelp method={WebLNMethod.verifyMessage} args={args} />
       </Modal>
     );
   }

@@ -2,8 +2,8 @@ import React from 'react';
 import i18next from 'i18next';
 import { WebLNProvider } from 'webln';
 import { RejectionError } from 'webln/lib/errors';
-import FallbackWebLNProvider, { FallbackMethodHandler } from './provider';
-import { WebLNMethod, MethodComponentProps } from './types';
+import FallbackWebLNProvider, { FallbackMethodHandler } from '../utils/provider';
+import { WebLNMethod, MethodComponentProps } from '../types';
 
 export const allMethods = [
   WebLNMethod.makeInvoice,

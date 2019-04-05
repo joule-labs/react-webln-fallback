@@ -1,9 +1,8 @@
 import React from 'react';
 import { Modal, Input, Divider } from 'antd';
-import { MethodComponentProps } from 'react-webln-fallback';
+import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
-import { Command } from './util/cli';
 
 type Props = MethodComponentProps;
 
@@ -20,6 +19,7 @@ export default class SignMessage extends React.PureComponent<Props, State> {
     const { args } = this.props;
     const { signature } = this.state;
 
+    console.log(!signature);
     return (
       <Modal
         title="Sign Message"
@@ -30,7 +30,7 @@ export default class SignMessage extends React.PureComponent<Props, State> {
         visible
       >
         <p>Run the following command, then paste the signature below</p>
-        <CLIHelp command={Command.SIGN} args={args} />
+        <CLIHelp method={WebLNMethod.signMessage} args={args} />
         <Input.TextArea
           placeholder="Paste signature here"
           value={signature}
@@ -48,22 +48,7 @@ export default class SignMessage extends React.PureComponent<Props, State> {
 
   private handleApprove = () => {
     const [message] = this.props.args as Parameters<WebLNProvider['signMessage']>;
-    let { signature } = this.state;
-
-    // If they pasted the whole JSON blob or quotes, decode and reassing
-    try {
-      const json = JSON.parse(signature);
-      if (json.signature) {
-        signature = json.signature;
-      }
-      if (typeof json === 'string') {
-        signature = json;
-      }
-    }
-    catch (_) {
-      // no-op
-    }
-
+    const signature = parseSignatureFromInput(this.state.signature);
     this.props.onApprove({ message, signature } as SignMessageResponse);
   };
 
