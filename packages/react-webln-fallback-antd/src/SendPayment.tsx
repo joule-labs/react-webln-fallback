@@ -25,7 +25,12 @@ export default class SendPayment extends React.PureComponent<Props> {
       >
         <Row type="flex" gutter={20} align="middle" justify="center">
           <Col xs={24} sm={9}>
-            <div style={{ padding: '10px', borderRadius: 4, border: '1px solid rgba(0, 0, 0, 0.1)' }}>
+            <div style={{
+              padding: 10,
+              marginBottom: 10,
+              borderRadius: 4,
+              border: '1px solid rgba(0, 0, 0, 0.1)',
+            }}>
               <QRCode
                 value={paymentRequest.toUpperCase()}
                 style={{ display: 'block', width: '100%', height: 'auto' }}

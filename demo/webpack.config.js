@@ -59,6 +59,7 @@ module.exports = {
   entry: {
     index: path.join(src, 'index.tsx'),
     antd: path.join(src, 'antd.tsx'),
+    bootstrap: path.join(src, 'bootstrap.tsx'),
   },
   output: {
     path: dist,
@@ -90,6 +91,12 @@ module.exports = {
       template: `${src}/antd.html`,
       chunks: ['antd'],
       filename: 'antd.html',
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: `${src}/bootstrap.html`,
+      chunks: ['bootstrap'],
+      filename: 'bootstrap.html',
       inject: true,
     }),
   ],

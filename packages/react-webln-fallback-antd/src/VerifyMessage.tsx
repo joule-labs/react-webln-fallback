@@ -11,7 +11,7 @@ export default class VerifyMessage extends React.PureComponent<Props> {
 
     return (
       <Modal
-        title="Sign Message"
+        title="Verify Message"
         onOk={this.handleApprove}
         onCancel={this.handleApprove}
         maskClosable={false}

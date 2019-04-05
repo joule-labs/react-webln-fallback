@@ -8,7 +8,7 @@ function exec(cmd) {
 const cwd = process.cwd();
 
 const mainPackage = 'react-webln-fallback';
-const subPackages = ['react-webln-fallback-antd'];
+const subPackages = ['react-webln-fallback-antd', 'react-webln-fallback-bootstrap'];
 const allPackages = ['react-webln-fallback', ...subPackages];
 
 // Build & link the main package

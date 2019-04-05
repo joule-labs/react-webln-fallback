@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal, Input, Divider } from 'antd';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
@@ -21,23 +23,33 @@ export default class SignMessage extends React.PureComponent<Props, State> {
 
     return (
       <Modal
-        title="Sign Message"
-        onOk={this.handleApprove}
-        onCancel={this.handleReject}
-        okButtonDisabled={!signature}
-        okText="Submit"
-        maskClosable={false}
-        visible
+        onHide={this.handleReject}
+        backdrop="static"
+        show
       >
-        <p>Run the following command, then paste the signature below</p>
-        <CLIHelp method={WebLNMethod.signMessage} args={args} />
-        <Input.TextArea
-          placeholder="Paste signature here"
-          value={signature}
-          rows={5}
-          style={{ marginTop: '10px' }}
-          onChange={this.handleChange}
-        />
+        <Modal.Header closeButton>
+          <Modal.Title>Sign message</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Run the following command, then paste the signature below</p>
+          <CLIHelp method={WebLNMethod.signMessage} args={args} />
+          <Form.Control
+            as="textarea"
+            placeholder="Paste signature here"
+            value={signature}
+            rows={5}
+            style={{ marginTop: '10px' }}
+            onChange={this.handleChange}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleReject} disabled={!signature}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={this.handleApprove}>
+            Submit
+          </Button>
+        </Modal.Footer>
       </Modal>
     );
   }

@@ -7,7 +7,11 @@ function exec(cmd) {
 
 const cwd = process.cwd();
 
-['react-webln-fallback', 'react-webln-fallback-antd'].forEach(
+[
+  'react-webln-fallback',
+  'react-webln-fallback-antd',
+  'react-webln-fallback-bootstrap',
+].forEach(
   packageName => {
     process.chdir(path.resolve(__dirname, '../packages/', packageName));
     console.log(`Running build for ${packageName}...`);

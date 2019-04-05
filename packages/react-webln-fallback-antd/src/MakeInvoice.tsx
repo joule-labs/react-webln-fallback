@@ -25,7 +25,7 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
         title="Provide an Invoice"
         onOk={this.handleApprove}
         onCancel={this.handleReject}
-        okText="Submit invoice"
+        okText="Submit"
         okButtonDisabled={!paymentRequest}
         maskClosable={false}
         visible

@@ -12,6 +12,10 @@ const STYLES = {
     name: 'Ant Design',
     link: 'https://ant.design',
   },
+  bootstrap: {
+    name: 'Bootstrap',
+    linke: 'https://react-bootstrap.github.io/',
+  },
   'semantic-ui': {
     name: 'Semantic UI',
     link: 'https://react.semantic-ui.com',
