@@ -59,7 +59,7 @@ export default [{
   // UMD (Development)
   input: 'src/umd.tsx',
   output: [{
-    file: 'umd/react-webln-fallback-material-ui.js',
+    file: 'umd/react-webln-fallback-semantic-ui.js',
     format: 'umd',
     name: 'ReactWebLNFallback',
     indent: false,
@@ -69,7 +69,7 @@ export default [{
   // UMD (Production)
   input: 'src/umd.tsx',
   output: [{
-    file: 'umd/react-webln-fallback-material-ui.min.js',
+    file: 'umd/react-webln-fallback-semantic-ui.min.js',
     format: 'umd',
     name: 'ReactWebLNFallback',
     indent: false,

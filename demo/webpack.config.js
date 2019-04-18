@@ -3,11 +3,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
+const publicPath = isDev ? '/' : '.';
 
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
 
-const bundles = ['index', 'antd', 'bootstrap', 'material-ui'];
+const bundles = ['index', 'antd', 'bootstrap', 'material-ui', 'semantic-ui'];
 
 // Construct some things dynamically based on bundles array
 const entry = bundles.reduce((prev, bundle) => {
@@ -73,6 +74,16 @@ const lessLoader = {
     },
   ],
 };
+const fileLoader = {
+  test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+  use: [{
+    loader: 'file-loader',
+    options: {
+      publicPath,
+      name: '[folder]/[name].[ext]',
+    },
+  }],
+};
 
 // Full config
 module.exports = {
@@ -84,7 +95,7 @@ module.exports = {
   plugins,
   output: {
     path: dist,
-    publicPath: isDev ? '/' : '.',
+    publicPath,
     chunkFilename: isDev ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
   },
   module: {
@@ -92,6 +103,7 @@ module.exports = {
       typescriptLoader,
       lessLoader,
       cssLoader,
+      fileLoader,
     ],
   },
   resolve: {
