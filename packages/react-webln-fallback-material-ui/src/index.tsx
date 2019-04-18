@@ -8,7 +8,7 @@ import VerifyMessage from './VerifyMessage';
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 type Props = Partial<Omit<ReactWebLNFallbackProps, 'methodComponents'>>;
 
-export default class BootstrapReactWebLNFallback extends React.PureComponent<Props> {
+export default class MaterialUIReactWebLNFallback extends React.PureComponent<Props> {
   render() {
     let { supportedMethods, ...rest } = this.props;
     if (!supportedMethods) {

@@ -7,6 +7,29 @@ const isDev = process.env.NODE_ENV !== 'production';
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
 
+const bundles = ['index', 'antd', 'bootstrap', 'material-ui'];
+
+// Construct some things dynamically based on bundles array
+const entry = bundles.reduce((prev, bundle) => {
+  prev[bundle] = path.join(src, `${bundle}.tsx`);
+  return prev;
+}, {})
+
+const plugins = [
+  new MiniCssExtractPlugin({
+    filename: isDev ? '[name].css' : '[name].[hash:8].css',
+  }),
+  ...bundles.map(b => (
+    new HtmlWebpackPlugin({
+      template: path.join(src, `${b}.html`),
+      chunks: [b],
+      filename: `${b}.html`,
+      inject: true,
+    })
+  )),
+];
+
+// Loaders
 const typescriptLoader = {
   test: /\.tsx?$/,
   use: [
@@ -51,16 +74,14 @@ const lessLoader = {
   ],
 };
 
+// Full config
 module.exports = {
   mode: isDev ? 'development' : 'production',
   name: 'main',
   target: 'web',
   devtool: 'cheap-module-inline-source-map',
-  entry: {
-    index: path.join(src, 'index.tsx'),
-    antd: path.join(src, 'antd.tsx'),
-    bootstrap: path.join(src, 'bootstrap.tsx'),
-  },
+  entry,
+  plugins,
   output: {
     path: dist,
     publicPath: isDev ? '/' : '.',
@@ -77,27 +98,4 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.mjs', '.json'],
     modules: [path.join(__dirname, 'node_modules')],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[hash:8].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: `${src}/index.html`,
-      chunks: ['index'],
-      filename: 'index.html',
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: `${src}/antd.html`,
-      chunks: ['antd'],
-      filename: 'antd.html',
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: `${src}/bootstrap.html`,
-      chunks: ['bootstrap'],
-      filename: 'bootstrap.html',
-      inject: true,
-    }),
-  ],
 };

@@ -54,7 +54,7 @@ export default class SendPayment extends React.PureComponent<Props> {
                   readOnly
                   style={{ marginBottom: 10 }}
                 />
-                <Button variant="primary" block>
+                <Button href={`lightning:${paymentRequest}`} variant="primary" block>
                   Open in Wallet
                 </Button>
               </Col>
