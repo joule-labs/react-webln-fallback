@@ -5,28 +5,29 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
-export default class VerifyMessage extends React.PureComponent<Props> {
+class VerifyMessage extends React.PureComponent<Props> {
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
 
     return (
       <Dialog open disableBackdropClick onClose={this.handleApprove}>
         <DialogTitle>Verify message</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Run the following command to verify the integrity of the signed message
+            {t('react-webln-fallback.verify.instructions')}
           </DialogContentText>
           <div style={{ marginBottom: 10 }} />
           <CLIHelp method={WebLNMethod.verifyMessage} args={args} />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.handleApprove} color="primary">
-            OK
+          {t('react-webln-fallback.common.ok')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -37,3 +38,5 @@ export default class VerifyMessage extends React.PureComponent<Props> {
     this.props.onApprove(null);
   };
 }
+
+export default withTranslation()(VerifyMessage);

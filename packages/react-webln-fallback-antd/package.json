@@ -15,8 +15,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "i18next": "15.0.8",
-    "i18next-browser-languagedetector": "3.0.1",
+    "i18next": "15.0.9",
     "qrcode.react": "0.9.3",
     "react-i18next": "10.6.0"
   },

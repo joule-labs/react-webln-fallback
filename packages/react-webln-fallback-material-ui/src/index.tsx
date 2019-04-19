@@ -1,5 +1,10 @@
 import React from 'react';
-import { ReactWebLNFallback, ReactWebLNFallbackProps, WebLNMethod, allMethods } from 'react-webln-fallback';
+import {
+  ReactWebLNFallback,
+  ReactWebLNFallbackProps,
+  WebLNMethod,
+  allMethods,
+} from 'react-webln-fallback-core';
 import MakeInvoice from './MakeInvoice';
 import SendPayment from './SendPayment';
 import SignMessage from './SignMessage';

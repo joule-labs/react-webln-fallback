@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Row, Col, Input, Button, Icon, Divider } from 'antd';
-import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
 import CLIHelp from './CLIHelp';
@@ -8,16 +9,18 @@ import CLIHelp from './CLIHelp';
 // Add SVG types to QRCode since it passes them through
 const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
-export default class SendPayment extends React.PureComponent<Props> {
+class SendPayment extends React.PureComponent<Props> {
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
 
     return (
       <Modal
-        title="Send Payment"
+        title={t('react-webln-fallback.send.title')}
+        okText={t('react-webln-fallback.common.submit')}
+        cancelText={t('react-webln-fallback.common.cancel')}
         onOk={this.handleApprove}
         onCancel={this.handleReject}
         maskClosable={false}
@@ -45,11 +48,11 @@ export default class SendPayment extends React.PureComponent<Props> {
               readOnly
             />
             <Button href={`lightning:${paymentRequest}`} type="primary" block>
-              <Icon type="thunderbolt" theme="filled" /> Open in Wallet
+              <Icon type="thunderbolt" theme="filled" /> {t('react-webln-fallback.send.open')}
             </Button>
           </Col>
         </Row>
-        <Divider>or</Divider>
+        <Divider>{t('react-webln-fallback.common.or')}</Divider>
         <CLIHelp method={WebLNMethod.sendPayment} args={args} />
       </Modal>
     );
@@ -60,6 +63,8 @@ export default class SendPayment extends React.PureComponent<Props> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Payment closed before sending');
+    this.props.onReject(this.props.t('react-webln-fallback.send.reject'));
   };
 }
+
+export default withTranslation()(SendPayment);

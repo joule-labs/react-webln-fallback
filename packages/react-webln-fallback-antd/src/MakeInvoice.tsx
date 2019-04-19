@@ -1,31 +1,35 @@
 import React from 'react';
 import { Modal, Input, Divider } from 'antd';
-import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   paymentRequest: string;
 }
 
-export default class MakeInvoice extends React.PureComponent<Props, State> {
+class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t, i18n } = this.props;
     const { paymentRequest } = this.state;
     const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
 
+    console.log({ t, i18n });
+
     return (
       <Modal
-        title="Provide an Invoice"
+        title={t('react-webln-fallback.invoice.title')}
+        okText={t('react-webln-fallback.common.submit')}
+        cancelText={t('react-webln-fallback.common.cancel')}
         onOk={this.handleApprove}
         onCancel={this.handleReject}
-        okText="Submit"
         okButtonDisabled={!paymentRequest}
         maskClosable={false}
         visible
@@ -52,6 +56,8 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Payment closed before sending');
+    this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
+
+export default withTranslation()(MakeInvoice);

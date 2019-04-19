@@ -6,29 +6,30 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   paymentRequest: string;
 }
 
-export default class MakeInvoice extends React.PureComponent<Props, State> {
+class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const { paymentRequest } = this.state;
     const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
 
     return (
       <Dialog open disableBackdropClick onClose={this.handleReject}>
-        <DialogTitle>Provide an invoice</DialogTitle>
+        <DialogTitle>{t('react-webln-fallback.invoice.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <MakeInvoiceInstructions args={invoiceReqs} />
@@ -50,10 +51,10 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
         </DialogContent>
         <DialogActions>
           <Button onClick={this.handleReject} color="primary">
-            Cancel
+            {t('react-webln-fallback.common.cancel')}
           </Button>
           <Button onClick={this.handleApprove} color="primary" disabled={!paymentRequest}>
-            OK
+            {t('react-webln-fallback.common.submit')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -69,6 +70,8 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Payment closed before sending');
+    this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
+
+export default withTranslation()(MakeInvoice);

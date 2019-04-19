@@ -1,9 +1,11 @@
 import React from 'react';
 import i18next from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { WebLNProvider } from 'webln';
 import { RejectionError } from 'webln/lib/errors';
 import FallbackWebLNProvider, { FallbackMethodHandler } from '../utils/provider';
 import { WebLNMethod, MethodComponentProps } from '../types';
+import defaulti18n from '../i18n';
 
 export const allMethods = [
   WebLNMethod.makeInvoice,
@@ -15,11 +17,12 @@ export const allMethods = [
 export interface ReactWebLNFallbackProps {
   supportedMethods: WebLNMethod[];
   methodComponents: { [key in WebLNMethod]?: React.ComponentType<MethodComponentProps> };
-  i18next?: i18next.i18n;
-  i18nextLng?: string;
-  i18nextResource?: i18next.Resource;
+  i18n?: i18next.i18n;
+  i18nLng?: string;
   overrideWebLN?: boolean;
 }
+
+type Props = ReactWebLNFallbackProps;
 
 interface State {
   isProvidingWebLN: boolean;
@@ -33,13 +36,13 @@ interface WindowWithWebLN extends Window {
 
 const weblnWindow = window as WindowWithWebLN;
 
-export class ReactWebLNFallback extends React.PureComponent<ReactWebLNFallbackProps, State> {
+export class ReactWebLNFallback extends React.PureComponent<Props, State> {
   state: State = {
     isProvidingWebLN: false,
     activePrompt: null,
   };
 
-  constructor(props: ReactWebLNFallbackProps) {
+  constructor(props: Props) {
     super(props);
 
     // Don't let them pass a supportedMethod without a corresponding component
@@ -55,6 +58,15 @@ export class ReactWebLNFallback extends React.PureComponent<ReactWebLNFallbackPr
     if (!weblnWindow.webln || props.overrideWebLN) {
       this.state.isProvidingWebLN = true;
       this.attachWebLNToWindow();
+    }
+
+    // Set language
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const { i18n, i18nLng } = this.props;
+    if (!i18n && i18nLng && i18nLng !== prevProps.i18nLng) {
+      defaulti18n.changeLanguage(i18nLng);
     }
   }
 
@@ -73,7 +85,16 @@ export class ReactWebLNFallback extends React.PureComponent<ReactWebLNFallbackPr
     if (!MethodComponent) {
       return null;
     }
-    return <MethodComponent {...activePrompt} />;
+
+    // Default or passed i18n
+    const i18n = this.props.i18n || defaulti18n;
+    console.log(i18n);
+
+    return (
+      <I18nextProvider i18n={i18n}>
+        <MethodComponent {...activePrompt} />
+      </I18nextProvider>
+    );
   }
 
   private attachWebLNToWindow() {
@@ -85,9 +106,10 @@ export class ReactWebLNFallback extends React.PureComponent<ReactWebLNFallbackPr
   }
 
   private handleWebLNMethod: FallbackMethodHandler = ({ method, args }: any) => {
+    const i18n = this.props.i18n || defaulti18n;
     return new Promise<any>((resolve, reject) => {
       if (this.state.activePrompt) {
-        return reject(new RejectionError('Currently busy with another prompt'));
+        return reject(new RejectionError(i18n.t('react-webln-fallback.common.busy')));
       }
 
       const activePrompt = {

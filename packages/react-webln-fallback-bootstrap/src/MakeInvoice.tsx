@@ -2,34 +2,31 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   paymentRequest: string;
 }
 
-export default class MakeInvoice extends React.PureComponent<Props, State> {
+class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const { paymentRequest } = this.state;
     const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
 
     return (
-      <Modal
-        onHide={this.handleReject}
-        backdrop="static"
-        show
-      >
+      <Modal onHide={this.handleReject} backdrop="static" show>
         <Modal.Header closeButton>
-          <Modal.Title>Provide an Invoice</Modal.Title>
+          <Modal.Title>{t('react-webln-fallback.invoice.title')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <MakeInvoiceInstructions args={invoiceReqs} />
@@ -45,11 +42,11 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleReject} disabled={!paymentRequest}>
-            Cancel
+          <Button variant="secondary" onClick={this.handleReject}>
+            {t('react-webln-fallback.common.cancel')}
           </Button>
-          <Button variant="primary" onClick={this.handleApprove}>
-            Submit
+          <Button variant="primary" onClick={this.handleApprove} disabled={!paymentRequest}>
+            {t('react-webln-fallback.common.submit')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -65,6 +62,8 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Payment closed before sending');
+    this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
+
+export default withTranslation()(MakeInvoice);

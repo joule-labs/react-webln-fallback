@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+
 # React WebLN Fallback Core
 
 Contains the base component and a bunch of utilities for creating React WebLN fallback components. Exports the following things:

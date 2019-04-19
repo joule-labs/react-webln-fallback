@@ -1,31 +1,28 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
-export default class VerifyMessage extends React.PureComponent<Props> {
+class VerifyMessage extends React.PureComponent<Props> {
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
 
     return (
-      <Modal
-        onHide={this.handleApprove}
-        backdrop="static"
-        show
-      >
+      <Modal onHide={this.handleApprove} backdrop="static" show>
         <Modal.Header closeButton>
           <Modal.Title>Verify message</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Run the following command to verify the integrity of the signed message</p>
+          <p>{t('react-webln-fallback.verify.instructions')}</p>
           <CLIHelp method={WebLNMethod.verifyMessage} args={args} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={this.handleApprove}>
-            OK
+          {t('react-webln-fallback.common.ok')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -36,3 +33,5 @@ export default class VerifyMessage extends React.PureComponent<Props> {
     this.props.onApprove(null);
   };
 }
+
+export default withTranslation()(VerifyMessage);

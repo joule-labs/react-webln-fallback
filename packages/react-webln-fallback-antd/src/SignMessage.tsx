@@ -1,38 +1,40 @@
 import React from 'react';
-import { Modal, Input, Divider } from 'antd';
-import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback';
+import { Modal, Input } from 'antd';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback-core';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   signature: string;
 }
 
-export default class SignMessage extends React.PureComponent<Props, State> {
+class SignMessage extends React.PureComponent<Props, State> {
   state: State = {
     signature: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const { signature } = this.state;
 
     return (
       <Modal
-        title="Sign Message"
+        title={t('react-webln-fallback.sign.title')}
+        okText={t('react-webln-fallback.common.submit')}
+        cancelText={t('react-webln-fallback.common.cancel')}
         onOk={this.handleApprove}
         onCancel={this.handleReject}
         okButtonDisabled={!signature}
-        okText="Submit"
         maskClosable={false}
         visible
       >
-        <p>Run the following command, then paste the signature below</p>
+        <p>{t('react-webln-fallback.sign.instructions')}</p>
         <CLIHelp method={WebLNMethod.signMessage} args={args} />
         <Input.TextArea
-          placeholder="Paste signature here"
+          placeholder={t('react-webln-fallback.sign.placeholder')}
           value={signature}
           rows={5}
           style={{ marginTop: '10px' }}
@@ -53,6 +55,8 @@ export default class SignMessage extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Closed before signing');
+    this.props.onReject(this.props.t('react-webln-fallback.sign.reject'));
   };
 }
+
+export default withTranslation()(SignMessage);

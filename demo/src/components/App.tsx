@@ -14,7 +14,7 @@ const STYLES = {
   },
   bootstrap: {
     name: 'Bootstrap',
-    linke: 'https://react-bootstrap.github.io/',
+    link: 'https://react-bootstrap.github.io/',
   },
   'semantic-ui': {
     name: 'Semantic UI',
@@ -56,7 +56,9 @@ export default class App extends React.Component<Props> {
     const styleMenu = (
       <Menu selectedKeys={[style]}>
         {Object.entries(STYLES).map(([s, info]) => (
-          <Menu.Item key={s} onClick={() => this.goToStyle(s)}>{info.name}</Menu.Item>
+          <Menu.Item key={s} onClick={() => this.goToStyle(s)}>
+            {info.name}
+          </Menu.Item>
         ))}
       </Menu>
     )
@@ -97,7 +99,7 @@ export default class App extends React.Component<Props> {
     )
   }
 
-  private goToStyle = (s: Style) => {
+  private goToStyle = (s: string) => {
     window.location.pathname = `/${s}`;
   };
 }

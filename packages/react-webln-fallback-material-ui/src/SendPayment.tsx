@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
 import CLIHelp from './CLIHelp';
@@ -15,16 +16,16 @@ import CLIHelp from './CLIHelp';
 // Add SVG types to QRCode since it passes them through
 const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
-export default class SendPayment extends React.PureComponent<Props> {
+class SendPayment extends React.PureComponent<Props> {
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
 
     return (
       <Dialog open disableBackdropClick onClose={this.handleReject}>
-        <DialogTitle>Send payment</DialogTitle>
+        <DialogTitle>{t('react-webln-fallback.send.title')}</DialogTitle>
         <DialogContent>
           <Grid container spacing={16}>
             <Grid item xs={12} sm={5}>
@@ -56,17 +57,17 @@ export default class SendPayment extends React.PureComponent<Props> {
                 size="large"
                 fullWidth
               >
-                Open in Wallet
+                {t('react-webln-fallback.send.open')}
               </Button>
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleReject} color="primary">
-            Cancel
+          <Button onClick={this.handleReject}>
+            {t('react-webln-fallback.common.cancel')}
           </Button>
           <Button onClick={this.handleApprove} color="primary">
-            OK
+            {t('react-webln-fallback.common.submit')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -78,6 +79,8 @@ export default class SendPayment extends React.PureComponent<Props> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Payment closed before sending');
+    this.props.onReject(this.props.t('react-webln-fallback.send.reject'));
   };
 }
+
+export default withTranslation()(SendPayment);

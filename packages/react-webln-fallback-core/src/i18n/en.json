@@ -1,0 +1,42 @@
+{
+  "react-webln-fallback": {
+    "common": {
+      "cancel": "Cancel",
+      "ok": "OK",
+      "submit": "Submit",
+      "or": "or",
+      "unit": "satoshis",
+      "busy": "Currently busy with another prompt"
+    },
+    "payment": {
+      "title": "Send payment",
+      "open": "Open in Wallet",
+      "reject": "Closed before making payment"
+    },
+    "invoice": {
+      "title": "Provide an invoice",
+      "reject": "Closed before providing invoice",
+      "instructionsFixed": "Please provide an invoice for <1>{{amount}} {{unit}}</1>:",
+      "instructionsMultiple": "Please provide an invoice that meets the following requirements:",
+      "fixedAmount": "An amount of <1>{{amount}} {{unit}}</1>",
+      "minimumAmount": "A minimum of <1>{{amount}} {{unit}}</1>",
+      "maximumAmount": "A maximum of <1>{{amount}} {{unit}}</1>",
+      "memo": "A memo of <1>\"{{memo}}\"</1>"
+    },
+    "sign": {
+      "title": "Sign message",
+      "instructions": "Run the following command, then paste the signature below",
+      "label": "Message signature",
+      "placeholder": "Paste signature here",
+      "reject": "Closed before providing signature"
+    },
+    "verify": {
+      "title": "Verify message",
+      "instructions": "Run the following command to verify the integrity of the signed message"
+    },
+    "cli": {
+      "prefix": "CLI instructions for",
+      "unsupported": "N/A (Unsupported)"
+    }
+  }
+}

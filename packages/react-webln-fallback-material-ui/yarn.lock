@@ -1276,15 +1276,10 @@ hyphenate-style-name@^1.0.2:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.3.tgz#097bb7fa0b8f1a9cf0bd5c734cf95899981a9b48"
   integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
 
-i18next-browser-languagedetector@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-3.0.1.tgz#a47c43176e8412c91e808afb7c6eb5367649aa8e"
-  integrity sha512-WFjPLNPWl62uu07AHY2g+KsC9qz0tyMq+OZEB/H7N58YKL/JLiCz9U709gaR20Mule/Ppn+uyfVx5REJJjn1HA==
-
-i18next@15.0.8:
-  version "15.0.8"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.8.tgz#4a52ba8b422832f334fe2fb464e8ad4785899211"
-  integrity sha512-ayzNwJ9NHtqEeAG0nQ6yKFbIpZULpDeesjVnfWQaPwbH7Anee8QwRAYPNWHtFCmDZV9FZaKiEbfo1scH8+KSDg==
+i18next@15.0.9:
+  version "15.0.9"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.9.tgz#42536407a921bb5a8535a4c090a26f16827a1884"
+  integrity sha512-IdVj7DqErUuMbGuj2dFT431T7zKlmDci63eae6pNA/bMwgBZKT74/KnwHXE0WH7ivo2EV/LNme4pP4Yw6vB79w==
   dependencies:
     "@babel/runtime" "^7.3.1"
 

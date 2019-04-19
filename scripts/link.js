@@ -7,13 +7,18 @@ function exec(cmd) {
 
 const cwd = process.cwd();
 
-const mainPackage = 'react-webln-fallback';
-const subPackages = ['react-webln-fallback-antd', 'react-webln-fallback-bootstrap'];
-const allPackages = ['react-webln-fallback', ...subPackages];
+const corePackage = 'react-webln-fallback-core';
+const subPackages = [
+  'react-webln-fallback-antd',
+  'react-webln-fallback-bootstrap',
+  'react-webln-fallback-material-ui',
+  'react-webln-fallback-semantic-ui',
+];
+const allPackages = [corePackage, ...subPackages];
 
 // Build & link the main package
-console.log(`Building and linking ${mainPackage}...`);
-process.chdir(path.resolve(__dirname, '../packages', mainPackage));
+console.log(`Building and linking ${corePackage}...`);
+process.chdir(path.resolve(__dirname, '../packages', corePackage));
 exec('yarn && yarn build && yarn link');
 
 // Link main package to sub-packages, build and link them too
@@ -21,7 +26,7 @@ subPackages.forEach(
   packageName => {
     process.chdir(path.resolve(__dirname, '../packages/', packageName));
     console.log(`Building and linking ${packageName}...`);
-    exec(`yarn && yarn link ${mainPackage} && yarn build && yarn link`);
+    exec(`yarn && yarn link ${corePackage} && yarn build && yarn link`);
   }
 );
 

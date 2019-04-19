@@ -1,28 +1,29 @@
 import React from 'react';
 import { Modal, Button, TextArea, Divider, Form } from 'semantic-ui-react';
-import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   paymentRequest: string;
 }
 
-export default class MakeInvoice extends React.PureComponent<Props, State> {
+class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const { paymentRequest } = this.state;
     const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
 
     return (
       <Modal open size="small" closeOnDimmerClick={false} onClose={this.handleReject}>
-        <Modal.Header>Provide an invoice</Modal.Header>
+        <Modal.Header>{t('react-webln-fallback.invoice.title')}</Modal.Header>
         <Modal.Content>
           <MakeInvoiceInstructions args={invoiceReqs} />
           <Form as="div">
@@ -41,10 +42,10 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={this.handleReject}>
-            Cancel
+            {t('react-webln-fallback.common.cancel')}
           </Button>
           <Button onClick={this.handleApprove} primary disabled={!paymentRequest}>
-            OK
+            {t('react-webln-fallback.common.submit')}
           </Button>
         </Modal.Actions>
       </Modal>
@@ -60,6 +61,8 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Payment closed before sending');
+    this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
+
+export default withTranslation()(MakeInvoice);

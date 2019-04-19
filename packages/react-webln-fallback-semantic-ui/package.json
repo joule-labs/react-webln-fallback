@@ -15,8 +15,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "i18next": "15.0.8",
-    "i18next-browser-languagedetector": "3.0.1",
+    "i18next": "15.0.9",
     "qrcode.react": "0.9.3",
     "react-i18next": "10.6.0"
   },
@@ -24,7 +23,6 @@
     "@babel/core": "7.4.0",
     "@babel/preset-env": "7.4.2",
     "@babel/preset-react": "7.0.0",
-    "semantic-ui-react": "0.86.0",
     "@types/bech32": "1.1.1",
     "@types/qrcode.react": "0.8.2",
     "@types/react": "16.8.10",
@@ -39,12 +37,13 @@
     "rollup-plugin-peer-deps-external": "2.2.0",
     "rollup-plugin-terser": "4.0.4",
     "rollup-plugin-typescript2": "0.20.1",
+    "semantic-ui-react": "0.86.0",
     "typescript": "3.4.1",
     "webln": "0.2.0"
   },
   "peerDependencies": {
-    "semantic-ui-react": "^0.80.0",
     "react": ">=15.0.0",
+    "semantic-ui-react": "^0.80.0",
     "webln": "^0.2.0"
   }
 }

@@ -2,40 +2,37 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback-core';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   signature: string;
 }
 
-export default class SignMessage extends React.PureComponent<Props, State> {
+class SignMessage extends React.PureComponent<Props, State> {
   state: State = {
     signature: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const { signature } = this.state;
 
     return (
-      <Modal
-        onHide={this.handleReject}
-        backdrop="static"
-        show
-      >
+      <Modal onHide={this.handleReject} backdrop="static" show>
         <Modal.Header closeButton>
-          <Modal.Title>Sign message</Modal.Title>
+          <Modal.Title>{t('react-webln-fallback.sign.title')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Run the following command, then paste the signature below</p>
+          <p>{t('react-webln-fallback.sign.instructions')}</p>
           <CLIHelp method={WebLNMethod.signMessage} args={args} />
           <Form.Control
             as="textarea"
-            placeholder="Paste signature here"
+            placeholder={t('react-webln-fallback.sign.placeholder')}
             value={signature}
             rows={5}
             style={{ marginTop: '10px' }}
@@ -43,11 +40,11 @@ export default class SignMessage extends React.PureComponent<Props, State> {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleReject} disabled={!signature}>
-            Cancel
+          <Button variant="secondary" onClick={this.handleReject}>
+            {t('react-webln-fallback.common.cancel')}
           </Button>
-          <Button variant="primary" onClick={this.handleApprove}>
-            Submit
+          <Button variant="primary" onClick={this.handleApprove} disabled={!signature}>
+            {t('react-webln-fallback.common.submit')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -65,6 +62,8 @@ export default class SignMessage extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Closed before signing');
+    this.props.onReject(this.props.t('react-webln-fallback.sign.reject'));
   };
 }
+
+export default withTranslation()(SignMessage);

@@ -620,9 +620,9 @@
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
 "@babel/runtime@^7.3.1":
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.2.tgz#f5ab6897320f16decd855eed70b705908a313fe8"
-  integrity sha512-7Bl2rALb7HpvXFL7TETNzKSAeBVCPHELzc0C//9FCxN8nsiueWSJBqaF+2oIJScyILStASR/Cx5WMkXGYTiJFA==
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.3.tgz#79888e452034223ad9609187a0ad1fe0d2ad4bdc"
+  integrity sha512-9lsJwJLxDh/T3Q3SZszfWOTkk3pHbkmH+3KY+zwIDmsNlxsumuhS2TH3NIpktU4kNvfzy+k3eLT7aTJSPTo0OA==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -1091,10 +1091,10 @@ i18next-browser-languagedetector@3.0.1:
   resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-3.0.1.tgz#a47c43176e8412c91e808afb7c6eb5367649aa8e"
   integrity sha512-WFjPLNPWl62uu07AHY2g+KsC9qz0tyMq+OZEB/H7N58YKL/JLiCz9U709gaR20Mule/Ppn+uyfVx5REJJjn1HA==
 
-i18next@15.0.8:
-  version "15.0.8"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.8.tgz#4a52ba8b422832f334fe2fb464e8ad4785899211"
-  integrity sha512-ayzNwJ9NHtqEeAG0nQ6yKFbIpZULpDeesjVnfWQaPwbH7Anee8QwRAYPNWHtFCmDZV9FZaKiEbfo1scH8+KSDg==
+i18next@15.0.9:
+  version "15.0.9"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.9.tgz#42536407a921bb5a8535a4c090a26f16827a1884"
+  integrity sha512-IdVj7DqErUuMbGuj2dFT431T7zKlmDci63eae6pNA/bMwgBZKT74/KnwHXE0WH7ivo2EV/LNme4pP4Yw6vB79w==
   dependencies:
     "@babel/runtime" "^7.3.1"
 
@@ -1421,10 +1421,10 @@ prop-types@^15.6.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
-react-i18next@10.6.0:
-  version "10.6.0"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.6.0.tgz#74f680b02f223954489d7b9ecdbb4a7e99ebd23d"
-  integrity sha512-w+ujMkZLU+YqR2IIHH4ON/g5GC9qed868umfAHF8DFSK80BZzcp+JzGqxsD/toSn3jUwwQ85cRvPdgQBdiWFcw==
+react-i18next@10.8.1:
+  version "10.8.1"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-10.8.1.tgz#3446eaf357e95fef9cafd450a7b5dbdc1ffb15a3"
+  integrity sha512-sR0lgZsHNYH4r4yZAt6uHbS1J3ockCJ2kTXcQmAPXUjdNSQJKsdkhPCh94c+SgH7Oh6LiQoXp++SKZyz5UbUwg==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
@@ -1548,6 +1548,13 @@ rollup-plugin-commonjs@9.2.2:
     estree-walker "^0.6.0"
     magic-string "^0.25.2"
     resolve "^1.10.0"
+    rollup-pluginutils "^2.5.0"
+
+rollup-plugin-json@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-json/-/rollup-plugin-json-4.0.0.tgz#a18da0a4b30bf5ca1ee76ddb1422afbb84ae2b9e"
+  integrity sha512-hgb8N7Cgfw5SZAkb3jf0QXii6QX/FOkiIq2M7BAQIEydjHvTyxXHQiIzZaTFgx1GK0cRCHOCBHIyEkkLdWKxow==
+  dependencies:
     rollup-pluginutils "^2.5.0"
 
 rollup-plugin-local-resolve@1.0.7:

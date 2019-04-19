@@ -18,15 +18,6 @@ const makePlugins = (opts) => {
         },
       },
     }),
-    // babel({
-    //   extensions: [
-    //     ...DEFAULT_EXTENSIONS,
-    //     'ts',
-    //     'tsx'
-    //   ],
-    //   exclude: 'node_modules/**',
-    //   runtimeHelpers: true,
-    // }),
     peerDepsExternal(),
     localResolve(),
     nodeResolve(),
@@ -59,7 +50,7 @@ export default [{
   // UMD (Development)
   input: 'src/umd.tsx',
   output: [{
-    file: 'umd/react-webln-fallback-antd.js',
+    file: 'umd/react-webln-fallback.js',
     format: 'umd',
     name: 'ReactWebLNFallback',
     indent: false,
@@ -69,7 +60,7 @@ export default [{
   // UMD (Production)
   input: 'src/umd.tsx',
   output: [{
-    file: 'umd/react-webln-fallback-antd.min.js',
+    file: 'umd/react-webln-fallback.min.js',
     format: 'umd',
     name: 'ReactWebLNFallback',
     indent: false,

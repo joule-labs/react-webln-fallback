@@ -4,6 +4,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import localResolve from 'rollup-plugin-local-resolve';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import json from 'rollup-plugin-json';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import pkg from './package.json';
 
@@ -19,15 +20,7 @@ export default {
   }],
   plugins: [
     typescript(),
-    // babel({
-    //   extensions: [
-    //     ...DEFAULT_EXTENSIONS,
-    //     'ts',
-    //     'tsx'
-    //   ],
-    //   exclude: 'node_modules/**',
-    //   runtimeHelpers: true,
-    // }),
+    json(),
     peerDepsExternal(),
     localResolve(),
     nodeResolve(),

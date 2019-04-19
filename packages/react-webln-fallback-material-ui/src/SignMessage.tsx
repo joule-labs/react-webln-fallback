@@ -6,53 +6,54 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback-core';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps;
+type Props = MethodComponentProps & WithTranslation;
 
 interface State {
   signature: string;
 }
 
-export default class SignMessage extends React.PureComponent<Props, State> {
+class SignMessage extends React.PureComponent<Props, State> {
   state: State = {
     signature: '',
   };
 
   render() {
-    const { args } = this.props;
+    const { args, t } = this.props;
     const { signature } = this.state;
 
     return (
       <Dialog open disableBackdropClick onClose={this.handleReject}>
-        <DialogTitle>Sign message</DialogTitle>
+        <DialogTitle>{t('react-webln-fallback.sign.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Run the following command, then paste the signature below
+            {t('react-webln-fallback.sign.instructions')}
           </DialogContentText>
           <div style={{ marginBottom: 10 }} />
           <CLIHelp method={WebLNMethod.signMessage} args={args} />
           <div style={{ marginBottom: 20 }} />
           <TextField
-            label="Message signature"
+            label={t('react-webln-fallback.sign.label')}
             variant="outlined"
             fullWidth
             multiline
             rows={5}
             value={signature}
             onChange={this.handleChange}
-            placeholder="Paste signature here"
+            placeholder={t('react-webln-fallback.sign.placeholder')}
             InputLabelProps={{ shrink: true }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleReject} color="primary">
-            Cancel
+          <Button onClick={this.handleReject}>
+            {t('react-webln-fallback.common.cancel')}
           </Button>
           <Button onClick={this.handleApprove} color="primary" disabled={!signature}>
-            Submit
+            {t('react-webln-fallback.common.submit')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -70,6 +71,8 @@ export default class SignMessage extends React.PureComponent<Props, State> {
   };
 
   private handleReject = () => {
-    this.props.onReject('Closed before signing');
+    this.props.onReject(this.props.t('react-webln-fallback.sign.reject'));
   };
 }
+
+export default withTranslation()(SignMessage);

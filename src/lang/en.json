@@ -1,0 +1,31 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "ok": "OK",
+    "submit": "Submit",
+    "or": "or"
+  },
+  "payment": {
+    "title": "Send payment",
+    "open": "Open in Wallet",
+    "reject": "Closed before making payment"
+  },
+  "invoice": {
+    "title": "Provide an invoice",
+    "reject": "Closed before providing invoice"
+  },
+  "sign": {
+    "title": "Sign message",
+    "instructions": "Run the following command, then paste the signature below",
+    "placeholder": "Paste signature here",
+    "reject": "Closed before providing signature"
+  },
+  "verify": {
+    "title": "Verify message",
+    "instructions": "Run the following command to verify the integrity of the signed message"
+  },
+  "cli": {
+    "prefix": "CLI instructions for",
+    "unsupported": "N/A (Unsupported)"
+  }
+}
