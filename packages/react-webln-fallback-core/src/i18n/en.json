@@ -16,12 +16,12 @@
     "invoice": {
       "title": "Provide an invoice",
       "reject": "Closed before providing invoice",
-      "instructionsFixed": "Please provide an invoice for <1>{{amount}} {{unit}}</1>:",
+      "instructionsFixed": "Please provide an invoice for <strong>{{amount}} {{unit}}</strong>:",
       "instructionsMultiple": "Please provide an invoice that meets the following requirements:",
-      "fixedAmount": "An amount of <1>{{amount}} {{unit}}</1>",
-      "minimumAmount": "A minimum of <1>{{amount}} {{unit}}</1>",
-      "maximumAmount": "A maximum of <1>{{amount}} {{unit}}</1>",
-      "memo": "A memo of <1>\"{{memo}}\"</1>"
+      "fixedAmount": "An amount of <strong>{{amount}} {{unit}}</strong>",
+      "minimumAmount": "A minimum of <strong>{{amount}} {{unit}}</strong>",
+      "maximumAmount": "A maximum of <strong>{{amount}} {{unit}}</strong>",
+      "memo": "A memo of <strong>\"{{memo}}\"</strong>"
     },
     "sign": {
       "title": "Sign message",

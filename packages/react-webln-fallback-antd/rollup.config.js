@@ -1,13 +1,13 @@
 import typescript from 'rollup-plugin-typescript2';
-import babel from 'rollup-plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import localResolve from 'rollup-plugin-local-resolve';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 import pkg from './package.json';
+
+const isDev = process.env.NODE_ENV !== 'production';
 
 const makePlugins = (opts) => {
   return [
@@ -18,7 +18,7 @@ const makePlugins = (opts) => {
         },
       },
     }),
-    peerDepsExternal(),
+    opts.externals && peerDepsExternal(),
     localResolve(),
     nodeResolve(),
     commonjs(),
@@ -46,7 +46,7 @@ export default [{
     format: 'es',
   }],
   plugins: makePlugins({ declarations: true, externals: true }),
-}, {
+}, false && {
   // UMD (Development)
   input: 'src/umd.tsx',
   output: [{
@@ -56,7 +56,7 @@ export default [{
     indent: false,
   }],
   plugins: makePlugins({ declarations: false }),
-}, {
+}, !isDev && {
   // UMD (Production)
   input: 'src/umd.tsx',
   output: [{
@@ -66,4 +66,4 @@ export default [{
     indent: false,
   }],
   plugins: makePlugins({ declarations: false, minify: true }),
-}];
+}].filter(c => !!c);

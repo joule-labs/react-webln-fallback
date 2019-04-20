@@ -5,3 +5,4 @@ esm
 umd
 *.log
 .rpt2_cache
+.vscode

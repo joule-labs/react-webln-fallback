@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal, Row, Col, Input, Button, Icon, Divider } from 'antd';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
@@ -9,9 +8,9 @@ import CLIHelp from './CLIHelp';
 // Add SVG types to QRCode since it passes them through
 const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
-class SendPayment extends React.PureComponent<Props> {
+export default class SendPayment extends React.PureComponent<Props> {
   render() {
     const { args, t } = this.props;
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
@@ -53,7 +52,7 @@ class SendPayment extends React.PureComponent<Props> {
           </Col>
         </Row>
         <Divider>{t('react-webln-fallback.common.or')}</Divider>
-        <CLIHelp method={WebLNMethod.sendPayment} args={args} />
+        <CLIHelp method={WebLNMethod.sendPayment} args={args} t={t} />
       </Modal>
     );
   }
@@ -66,5 +65,3 @@ class SendPayment extends React.PureComponent<Props> {
     this.props.onReject(this.props.t('react-webln-fallback.send.reject'));
   };
 }
-
-export default withTranslation()(SendPayment);

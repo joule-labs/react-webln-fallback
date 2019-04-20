@@ -11,13 +11,12 @@
     "umd"
   ],
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "dev": "NODE_ENV=development rollup -c -w",
+    "build": "NODE_ENV=production rollup -c"
   },
   "dependencies": {
-    "i18next": "15.0.9",
     "qrcode.react": "0.9.3",
-    "react-i18next": "10.6.0"
+    "react-webln-fallback-core": "0.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
@@ -29,6 +28,7 @@
     "@types/react-dom": "16.8.3",
     "antd": "3.16.1",
     "react": "16.8.6",
+    "react-dom": "16.8.6",
     "rollup": "1.7.4",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-commonjs": "9.2.2",
@@ -43,7 +43,8 @@
   },
   "peerDependencies": {
     "antd": "^3.0.0",
-    "react": ">=15.0.0",
+    "react": ">=16",
+    "react-dom": ">=16",
     "webln": "^0.2.0"
   }
 }

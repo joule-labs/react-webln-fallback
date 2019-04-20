@@ -1,27 +1,24 @@
 import React from 'react';
 import { Modal, Input, Divider } from 'antd';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
 interface State {
   paymentRequest: string;
 }
 
-class MakeInvoice extends React.PureComponent<Props, State> {
+export default class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
 
   render() {
-    const { args, t, i18n } = this.props;
+    const { args, t } = this.props;
     const { paymentRequest } = this.state;
     const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
-
-    console.log({ t, i18n });
 
     return (
       <Modal
@@ -34,7 +31,7 @@ class MakeInvoice extends React.PureComponent<Props, State> {
         maskClosable={false}
         visible
       >
-        <MakeInvoiceInstructions args={invoiceReqs} />
+        <MakeInvoiceInstructions args={invoiceReqs} t={t} />
         <Input.TextArea
           rows={5}
           value={paymentRequest}
@@ -42,7 +39,7 @@ class MakeInvoice extends React.PureComponent<Props, State> {
           placeholder="lnbc5m1pw22r79pp5ghj74332mwfycdzafl0x2f..."
         />
         <Divider />
-        <CLIHelp method={WebLNMethod.makeInvoice} args={args} />
+        <CLIHelp method={WebLNMethod.makeInvoice} args={args} t={t} />
       </Modal>
     );
   }
@@ -59,5 +56,3 @@ class MakeInvoice extends React.PureComponent<Props, State> {
     this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
-
-export default withTranslation()(MakeInvoice);

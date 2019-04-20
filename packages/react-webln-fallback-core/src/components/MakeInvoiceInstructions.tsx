@@ -1,6 +1,7 @@
 import React from 'react';
+import i18next from 'i18next';
 import { WebLNProvider, RequestInvoiceArgs } from 'webln';
-import { withTranslation, WithTranslation, Trans } from 'react-i18next';
+import { MethodComponentProps } from '../types';
 
 function isInvoiceArgsObject(args: any): args is RequestInvoiceArgs {
   return !(args instanceof String || args instanceof Number);
@@ -8,11 +9,12 @@ function isInvoiceArgsObject(args: any): args is RequestInvoiceArgs {
 
 interface Props {
   args: Parameters<WebLNProvider["makeInvoice"]>[0];
+  t: MethodComponentProps['t'];
 }
 
 // Renders a simple string for fixed amount invoices, or a bullet list for
 // invoices with complex requirements (min, max, memo)
-class MakeInvoiceInstructionsComponent extends React.Component<Props & WithTranslation> {
+export class MakeInvoiceInstructions extends React.Component<Props> {
   render() {
     const { args, t } = this.props;
     const unit = t('react-webln-fallback.common.unit');
@@ -21,38 +23,36 @@ class MakeInvoiceInstructionsComponent extends React.Component<Props & WithTrans
 
     if (isInvoiceArgsObject(args)) {
       if (args.minimumAmount !== undefined) {
-        const amount = args.minimumAmount;
-        requirements.push(
-          <Trans i18nKey="react-webln-fallback.invoice.minimumAmount">
-            A minimum amount of <strong>{{amount: args.minimumAmount}} {{unit}}</strong>
-          </Trans>
-        );
+        const html = t('react-webln-fallback.invoice.minimumAmount', {
+          unit,
+          amount: args.minimumAmount,
+        });
+        requirements.push(<span dangerouslySetInnerHTML={{ __html: html }} />);
       }
       if (args.maximumAmount !== undefined) {
-        
-        requirements.push(
-          <Trans i18nKey="react-webln-fallback.invoice.maximumAmount">
-            A maximum amount of <strong>{{amount: args.maximumAmount}} {{unit}}</strong>
-          </Trans>
-        );
+        const html = t('react-webln-fallback.invoice.maximumAmount', {
+          unit,
+          amount: args.maximumAmount,
+        });
+        requirements.push(<span dangerouslySetInnerHTML={{ __html: html }} />);
       }
       if (args.defaultMemo) {
-        requirements.push(
-          <Trans i18nKey="react-webln-fallback.invoice.memo">
-            A memo of <strong>"{{memo: args.defaultMemo}}"</strong>
-          </Trans>
-        );
+        const html = t('react-webln-fallback.invoice.memo', {
+          unit,
+          memo: args.defaultMemo,
+        });
+        requirements.push(<span dangerouslySetInnerHTML={{ __html: html }} />);
       }
 
       if (args.amount) {
         if (!requirements.length) {
           fixedAmount = args.amount.toString();
         } else {
-          requirements.unshift(
-            <Trans i18nKey="react-webln-fallback.invoice.minimumAmount">
-              An amount of <strong>{{amount: args.amount}} {{unit}}</strong>
-            </Trans>
-          );
+          const html = t('react-webln-fallback.invoice.minimumAmount', {
+            unit,
+            amount: args.minimumAmount,
+          });
+          requirements.push(<span dangerouslySetInnerHTML={{ __html: html }} />);
         }
       }
     }
@@ -69,13 +69,11 @@ class MakeInvoiceInstructionsComponent extends React.Component<Props & WithTrans
       )
     }
     else {
-      return (
-        <Trans i18nKey="react-webln-fallback.invoice.instructionsFixed">
-          Please provide an invoice for <strong>{{amount: fixedAmount}} {{unit}}</strong>
-        </Trans>
-      );
+      const html = t('react-webln-fallback.invoice.minimumAmount', {
+        unit,
+        amount: fixedAmount,
+      });
+      return <p dangerouslySetInnerHTML={{ __html: html }} />;
     }
   }
 };
-
-export const MakeInvoiceInstructions = withTranslation()(MakeInvoiceInstructionsComponent);
