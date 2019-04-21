@@ -1,0 +1,33 @@
+const path = require('path');
+const webpack = require('webpack');
+const isDev = process.env.NODE_ENV !== 'production';
+
+module.exports = {
+  mode: isDev ? 'development' : 'production',
+  name: 'react-webln-fallback',
+  target: 'web',
+  devtool: 'cheap-module-inline-source-map',
+  entry: path.join(__dirname, 'src/umd.tsx'),
+  output: {
+    library: 'ReactWebLNFallback',
+    libraryTarget: 'umd',
+    path: path.join(__dirname, 'umd'),
+    filename: `react-webln-fallback${isDev ? '' : '.min'}.js`,
+  },
+  module: {
+    rules: [{
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+    }],
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.mjs', '.json'],
+    modules: [path.join(__dirname, 'node_modules')],
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.DEBUG': JSON.stringify(process.env.DEBUG)
+    }),
+  ],
+};

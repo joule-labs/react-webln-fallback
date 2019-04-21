@@ -8,7 +8,7 @@
       "unit": "satoshis",
       "busy": "Currently busy with another prompt"
     },
-    "payment": {
+    "send": {
       "title": "Send payment",
       "open": "Open in Wallet",
       "reject": "Closed before making payment"
