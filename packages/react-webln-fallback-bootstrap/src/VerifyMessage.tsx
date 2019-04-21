@@ -1,13 +1,12 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
-class VerifyMessage extends React.PureComponent<Props> {
+export default class VerifyMessage extends React.PureComponent<Props> {
   render() {
     const { args, t } = this.props;
 
@@ -18,7 +17,7 @@ class VerifyMessage extends React.PureComponent<Props> {
         </Modal.Header>
         <Modal.Body>
           <p>{t('react-webln-fallback.verify.instructions')}</p>
-          <CLIHelp method={WebLNMethod.verifyMessage} args={args} />
+          <CLIHelp method={WebLNMethod.verifyMessage} args={args} t={t} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={this.handleApprove}>
@@ -33,5 +32,3 @@ class VerifyMessage extends React.PureComponent<Props> {
     this.props.onApprove(null);
   };
 }
-
-export default withTranslation()(VerifyMessage);

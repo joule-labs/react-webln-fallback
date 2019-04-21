@@ -6,18 +6,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
 interface State {
   paymentRequest: string;
 }
 
-class MakeInvoice extends React.PureComponent<Props, State> {
+export default class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
@@ -32,7 +31,7 @@ class MakeInvoice extends React.PureComponent<Props, State> {
         <DialogTitle>{t('react-webln-fallback.invoice.title')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <MakeInvoiceInstructions args={invoiceReqs} />
+            <MakeInvoiceInstructions args={invoiceReqs} t={t} />
           </DialogContentText>
           <div style={{ marginTop: 10 }} />
           <TextField
@@ -47,7 +46,7 @@ class MakeInvoice extends React.PureComponent<Props, State> {
             InputLabelProps={{ shrink: true }}
           />
           <div style={{ margin: '20px 0', borderTop: '1px solid rgba(0, 0, 0, 0.1)' }} />
-          <CLIHelp method={WebLNMethod.makeInvoice} args={args} />
+          <CLIHelp method={WebLNMethod.makeInvoice} args={args} t={t} />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.handleReject} color="primary">
@@ -73,5 +72,3 @@ class MakeInvoice extends React.PureComponent<Props, State> {
     this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
-
-export default withTranslation()(MakeInvoice);

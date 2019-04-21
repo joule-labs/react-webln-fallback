@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
@@ -16,9 +15,9 @@ import CLIHelp from './CLIHelp';
 // Add SVG types to QRCode since it passes them through
 const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
-class SendPayment extends React.PureComponent<Props> {
+export default class SendPayment extends React.PureComponent<Props> {
   render() {
     const { args, t } = this.props;
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
@@ -61,6 +60,8 @@ class SendPayment extends React.PureComponent<Props> {
               </Button>
             </Grid>
           </Grid>
+          <div style={{ marginTop: 20 }} />
+          <CLIHelp method={WebLNMethod.sendPayment} args={args} t={t} />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.handleReject}>
@@ -82,5 +83,3 @@ class SendPayment extends React.PureComponent<Props> {
     this.props.onReject(this.props.t('react-webln-fallback.send.reject'));
   };
 }
-
-export default withTranslation()(SendPayment);

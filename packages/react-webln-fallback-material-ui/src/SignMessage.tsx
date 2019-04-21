@@ -6,18 +6,17 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback-core';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
 interface State {
   signature: string;
 }
 
-class SignMessage extends React.PureComponent<Props, State> {
+export default class SignMessage extends React.PureComponent<Props, State> {
   state: State = {
     signature: '',
   };
@@ -34,7 +33,7 @@ class SignMessage extends React.PureComponent<Props, State> {
             {t('react-webln-fallback.sign.instructions')}
           </DialogContentText>
           <div style={{ marginBottom: 10 }} />
-          <CLIHelp method={WebLNMethod.signMessage} args={args} />
+          <CLIHelp method={WebLNMethod.signMessage} args={args} t={t} />
           <div style={{ marginBottom: 20 }} />
           <TextField
             label={t('react-webln-fallback.sign.label')}
@@ -74,5 +73,3 @@ class SignMessage extends React.PureComponent<Props, State> {
     this.props.onReject(this.props.t('react-webln-fallback.sign.reject'));
   };
 }
-
-export default withTranslation()(SignMessage);

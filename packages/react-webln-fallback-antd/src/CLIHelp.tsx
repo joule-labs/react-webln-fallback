@@ -1,8 +1,14 @@
 import React from 'react';
-import { Input, Radio } from 'antd';
-import { RadioChangeEvent } from 'antd/lib/radio';
+import Input from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
-import { WebLNMethod, NodeType, MethodComponentProps, nodeInfo, getCliCommand } from 'react-webln-fallback-core';
+import Radio, { RadioChangeEvent } from 'antd/lib/radio';
+import {
+  WebLNMethod,
+  NodeType,
+  MethodComponentProps,
+  nodeInfo,
+  getCliCommand,
+} from 'react-webln-fallback-core';
 
 interface Props {
   method: WebLNMethod;
@@ -62,7 +68,7 @@ export default class CLIHelp extends React.PureComponent<Props, State> {
         return <Input readOnly value={cmd} />;
       }
     } else {
-      return <Input disabled value={t('react-webln-fallback.cli.unsupported') as string} />;
+      return <Input disabled value={t<string>('react-webln-fallback.cli.unsupported')} />;
     }
   };
 }

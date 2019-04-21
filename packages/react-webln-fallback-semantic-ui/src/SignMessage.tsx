@@ -1,17 +1,16 @@
 import React from 'react';
 import { Modal, Button, TextArea, Divider, Form } from 'semantic-ui-react';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback-core';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
 interface State {
   signature: string;
 }
 
-class SignMessage extends React.PureComponent<Props, State> {
+export default class SignMessage extends React.PureComponent<Props, State> {
   state: State = {
     signature: '',
   };
@@ -27,7 +26,7 @@ class SignMessage extends React.PureComponent<Props, State> {
           <p>
             {t('react-webln-fallback.sign.instructions')}
           </p>
-          <CLIHelp method={WebLNMethod.signMessage} args={args} />
+          <CLIHelp method={WebLNMethod.signMessage} args={args} t={t} />
           <Divider section />
           <Form as="div">
             <TextArea
@@ -66,5 +65,3 @@ class SignMessage extends React.PureComponent<Props, State> {
     this.props.onReject(this.props.t('react-webln-fallback.sign.reject'));
   };
 }
-
-export default withTranslation()(SignMessage);

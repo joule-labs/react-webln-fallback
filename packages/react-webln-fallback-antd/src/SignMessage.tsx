@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Input } from 'antd';
+import Modal from 'antd/lib/modal';
+import Input from 'antd/lib/input';
 import { MethodComponentProps, WebLNMethod, parseSignatureFromInput } from 'react-webln-fallback-core';
 import { WebLNProvider, SignMessageResponse } from 'webln';
 import CLIHelp from './CLIHelp';

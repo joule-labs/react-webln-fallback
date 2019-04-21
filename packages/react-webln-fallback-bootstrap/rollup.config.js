@@ -1,13 +1,13 @@
 import typescript from 'rollup-plugin-typescript2';
-import babel from 'rollup-plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import localResolve from 'rollup-plugin-local-resolve';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
-import { DEFAULT_EXTENSIONS } from '@babel/core';
 import pkg from './package.json';
+
+const isDev = process.env.NODE_ENV !== 'production';
 
 const makePlugins = (opts) => {
   return [
@@ -18,10 +18,27 @@ const makePlugins = (opts) => {
         },
       },
     }),
-    peerDepsExternal(),
+    opts.externals && peerDepsExternal(),
     localResolve(),
     nodeResolve(),
-    commonjs(),
+    commonjs(opts.externals ? undefined : {
+      // React et al do not provide module versions, so we have to manually
+      // specify their exports because rollup and CommonJS is weird.
+      namedExports: {
+        'node_modules/react/index.js': [
+          'Children',
+          'Component',
+          'PropTypes',
+          'createElement',
+          'cloneElement',
+        ],
+        'node_modules/react-dom/index.js': [
+          'render',
+          'findDOMNode',
+          'unmountComponentAtNode',
+        ],
+      },
+    }),
     json(),
     opts.minify && terser({
       compress: {
@@ -56,7 +73,7 @@ export default [{
     indent: false,
   }],
   plugins: makePlugins({ declarations: false }),
-}, {
+}, !isDev && {
   // UMD (Production)
   input: 'src/umd.tsx',
   output: [{
@@ -66,4 +83,4 @@ export default [{
     indent: false,
   }],
   plugins: makePlugins({ declarations: false, minify: true }),
-}];
+}].filter(c => !!c);

@@ -2,18 +2,17 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
 interface State {
   paymentRequest: string;
 }
 
-class MakeInvoice extends React.PureComponent<Props, State> {
+export default class MakeInvoice extends React.PureComponent<Props, State> {
   state: State = {
     paymentRequest: '',
   };
@@ -29,7 +28,7 @@ class MakeInvoice extends React.PureComponent<Props, State> {
           <Modal.Title>{t('react-webln-fallback.invoice.title')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MakeInvoiceInstructions args={invoiceReqs} />
+          <MakeInvoiceInstructions args={invoiceReqs} t={t} />
           <Form.Control
             as="textarea"
             rows={5}
@@ -38,7 +37,7 @@ class MakeInvoice extends React.PureComponent<Props, State> {
             placeholder="lnbc5m1pw22r79pp5ghj74332mwfycdzafl0x2f..."
           />
           <div className="mt-2">
-            <CLIHelp method={WebLNMethod.makeInvoice} args={args} />
+            <CLIHelp method={WebLNMethod.makeInvoice} args={args} t={t} />
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -65,5 +64,3 @@ class MakeInvoice extends React.PureComponent<Props, State> {
     this.props.onReject(this.props.t('react-webln-fallback.invoice.reject'));
   };
 }
-
-export default withTranslation()(MakeInvoice);

@@ -21,7 +21,24 @@ const makePlugins = (opts) => {
     opts.externals && peerDepsExternal(),
     localResolve(),
     nodeResolve(),
-    commonjs(),
+    commonjs(opts.externals ? undefined : {
+      // React et al do not provide module versions, so we have to manually
+      // specify their exports because rollup and CommonJS is weird.
+      namedExports: {
+        'node_modules/react/index.js': [
+          'Children',
+          'Component',
+          'PropTypes',
+          'createElement',
+          'cloneElement',
+        ],
+        'node_modules/react-dom/index.js': [
+          'render',
+          'findDOMNode',
+          'unmountComponentAtNode',
+        ],
+      },
+    }),
     json(),
     opts.minify && terser({
       compress: {
@@ -46,7 +63,7 @@ export default [{
     format: 'es',
   }],
   plugins: makePlugins({ declarations: true, externals: true }),
-}, false && {
+}, {
   // UMD (Development)
   input: 'src/umd.tsx',
   output: [{

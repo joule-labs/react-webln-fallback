@@ -1,11 +1,11 @@
-import typescript from 'rollup-plugin-typescript2';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import localResolve from 'rollup-plugin-local-resolve';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
-import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
+const typescript = require('rollup-plugin-typescript2');
+const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const localResolve = require('rollup-plugin-local-resolve');
+const nodeResolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+const json = require('rollup-plugin-json');
+const terser = require('rollup-plugin-terser');
+const pkg = require('./package.json');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -22,29 +22,13 @@ const makePlugins = (opts) => {
     localResolve(),
     nodeResolve(),
     commonjs(opts.externals ? undefined : {
-      // React et al do not provide module versions, so we have to manually
-      // specify their exports because rollup and CommonJS is weird.
+      include: [
+        'node_modules/**'
+      ],
       namedExports: {
-        'node_modules/react/index.js': [
-          'Children',
-          'Component',
-          'PureComponent',
-          'Fragment',
-          'PropTypes',
-          'createElement',
-          'cloneElement',
-          'isValidElement',
-          'createRef',
-        ],
-        'node_modules/react-dom/index.js': [
-          'render',
-          'findDOMNode',
-          'unmountComponentAtNode',
-          'createPortal',
-        ],
-        'node_modules/react-is/index.js': [
-          'isForwardRef',
-        ],
+        'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
+        'node_modules/react-dom/index.js': ['render'],
+        'node_modules/webln/lib/errors.js': ['UnsupportedMethodError', 'RejectionError'],
       },
     }),
     json(),
@@ -59,7 +43,7 @@ const makePlugins = (opts) => {
   ].filter(p => !!p);
 };
 
-export default [{
+module.exports = [{
   // CommonJS and ESModule
   input: 'src/index.tsx',
   output: [{

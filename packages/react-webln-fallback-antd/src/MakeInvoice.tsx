@@ -1,5 +1,7 @@
 import React from 'react';
-import { Modal, Input, Divider } from 'antd';
+import Modal from 'antd/lib/modal';
+import Input from 'antd/lib/input';
+import Divider from 'antd/lib/divider';
 import { MethodComponentProps, MakeInvoiceInstructions, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, RequestInvoiceResponse } from 'webln';
 import CLIHelp from './CLIHelp';

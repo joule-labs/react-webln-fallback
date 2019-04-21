@@ -16,9 +16,7 @@
   },
   "dependencies": {
     "@types/i18next": "12.1.0",
-    "i18next": "15.0.9",
-    "qrcode.react": "0.9.3",
-    "react-i18next": "10.6.0"
+    "qrcode.react": "0.9.3"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
@@ -31,6 +29,7 @@
     "bootstrap": "4.3.1",
     "react": "16.8.6",
     "react-bootstrap": "1.0.0-beta.6",
+    "react-dom": "16.8.6",
     "rollup": "1.7.4",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-commonjs": "9.2.2",
@@ -38,6 +37,7 @@
     "rollup-plugin-local-resolve": "1.0.7",
     "rollup-plugin-node-resolve": "4.0.1",
     "rollup-plugin-peer-deps-external": "2.2.0",
+    "rollup-plugin-replace": "2.2.0",
     "rollup-plugin-terser": "4.0.4",
     "rollup-plugin-typescript2": "0.20.1",
     "typescript": "3.4.1",
@@ -45,8 +45,9 @@
   },
   "peerDependencies": {
     "bootstrap": "^4.0.0",
-    "react": ">=15.0.0",
+    "react": ">=16",
     "react-bootstrap": "^1.0.0",
+    "react-dom": ">=16",
     "webln": "^0.2.0"
   }
 }

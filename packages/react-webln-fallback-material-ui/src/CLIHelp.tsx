@@ -2,19 +2,25 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { withTranslation, WithTranslation } from 'react-i18next';
-import { WebLNMethod, NodeType, nodeInfo, getCliCommand } from 'react-webln-fallback-core';
+import {
+  WebLNMethod,
+  NodeType,
+  MethodComponentProps,
+  nodeInfo,
+  getCliCommand,
+} from 'react-webln-fallback-core';
 
 interface Props {
   method: WebLNMethod;
   args: any;
+  t: MethodComponentProps['t'];
 }
 
 interface State {
   nodeType: NodeType;
 }
 
-class CLIHelp extends React.PureComponent<Props & WithTranslation, State> {
+export default class CLIHelp extends React.PureComponent<Props, State> {
   state: State = {
     nodeType: NodeType.LND,
   };
@@ -68,5 +74,3 @@ class CLIHelp extends React.PureComponent<Props & WithTranslation, State> {
     }
   };
 }
-
-export default withTranslation()(CLIHelp);

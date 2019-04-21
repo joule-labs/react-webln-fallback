@@ -5,13 +5,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
-import { withTranslation, WithTranslation } from 'react-i18next';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import CLIHelp from './CLIHelp';
 
-type Props = MethodComponentProps & WithTranslation;
+type Props = MethodComponentProps;
 
-class VerifyMessage extends React.PureComponent<Props> {
+export default class VerifyMessage extends React.PureComponent<Props> {
   render() {
     const { args, t } = this.props;
 
@@ -23,7 +22,7 @@ class VerifyMessage extends React.PureComponent<Props> {
             {t('react-webln-fallback.verify.instructions')}
           </DialogContentText>
           <div style={{ marginBottom: 10 }} />
-          <CLIHelp method={WebLNMethod.verifyMessage} args={args} />
+          <CLIHelp method={WebLNMethod.verifyMessage} args={args} t={t} />
         </DialogContent>
         <DialogActions>
           <Button onClick={this.handleApprove} color="primary">
@@ -38,5 +37,3 @@ class VerifyMessage extends React.PureComponent<Props> {
     this.props.onApprove(null);
   };
 }
-
-export default withTranslation()(VerifyMessage);

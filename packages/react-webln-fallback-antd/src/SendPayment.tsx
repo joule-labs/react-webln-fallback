@@ -1,5 +1,11 @@
 import React from 'react';
-import { Modal, Row, Col, Input, Button, Icon, Divider } from 'antd';
+import Modal from 'antd/lib/modal';
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Icon from 'antd/lib/icon';
+import Divider from 'antd/lib/divider';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
 import DefaultQRCode, { QRCodeProps } from 'qrcode.react';

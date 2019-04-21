@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'antd';
+import Modal from 'antd/lib/modal';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import CLIHelp from './CLIHelp';
 
