@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "cjs/index.js",
   "module": "esm/index.js",
-  "unpkg": "umd/react-webln-fallback-semantic-ui.min.js",
+  "unpkg": "umd/react-webln-fallback.min.js",
   "license": "MIT",
   "files": [
     "cjs",

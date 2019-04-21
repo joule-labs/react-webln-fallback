@@ -6,7 +6,6 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   name: 'react-webln-fallback',
   target: 'web',
-  devtool: 'cheap-module-inline-source-map',
   entry: path.join(__dirname, 'src/umd.tsx'),
   output: {
     library: 'ReactWebLNFallback',
