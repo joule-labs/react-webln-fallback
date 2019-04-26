@@ -1,8 +1,8 @@
-# WORK IN PROGRESS
-
 # React WebLN Fallback Core
 
-Contains the base component and a bunch of utilities for creating React WebLN fallback components. Exports the following things:
+Contains the base component and a bunch of utilities for creating React WebLN fallback components. If you're not sure what this is or how to use it, please read the main repository GitHub readme for more information: [https://github.com/joule-labs/react-webln-fallback](https://github.com/joule-labs/react-webln-fallback)
+
+This package exports the following things:
 
 ## Components
 
@@ -15,9 +15,7 @@ The base component for implementing a WebLN fallback component. Binds the WebLN 
 export interface ReactWebLNFallbackProps {
   supportedMethods: WebLNMethod[];
   methodComponents: { [key in WebLNMethod]?: React.ComponentType<MethodComponentProps> };
-  i18next?: i18next.i18n;
   i18nextLng?: string;
-  i18nextResource?: i18next.Resource;
   overrideWebLN?: boolean;
 }
 ```
@@ -37,6 +35,8 @@ export interface ReactWebLNFallbackProps {
     [WebLNMethod.signMessage]: MySignMessageComponent,
     [WebLNMethod.verifyMessage]: MyVerifyMessageComponent,
   }}
+  i18nextLng="en"
+  overrideWebLN={true}
 />
 ```
 
@@ -49,6 +49,8 @@ Renders instructions for the requirements of an invoice. Either a basic text des
 export interface MakeInvoiceInstructionsProps {
   // The first arg in webln.makeInvoice, string | number | RequestInvoiceArgs.
   args: Parameters<WebLNProvider["makeInvoice"]>[0];
+  // i18n translation function
+  t: i18n.TFunction;
 }
 ```
 
@@ -59,12 +61,12 @@ const args = {
   maximumAmount: 1000,
   defaultMemo: 'Tip for comment #184814',
 };
-<MakeInvoiceInstructions args={args} />
+<MakeInvoiceInstructions args={args} t={t} />
 ```
 
 ## Utility Functions
 
-###
+See [`src/utils/*.ts`](src/util) for all of these.
 
 ## Utility Constants / Types
 

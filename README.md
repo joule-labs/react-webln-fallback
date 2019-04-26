@@ -50,6 +50,7 @@ The component also takes in the following props (all optional):
 If you're not using React and / or don't have a build system setup, you can use the standalone versions of each style. Simply include the script for the style you want, call init with an element to mount to, and you're good to go.
 
 ```html
+<!-- It's recommended to add SRI integrity attributes for security -->
 <script src="https://unpkg.com/react-webln-fallback-[style]/umd/react-webln-fallback.min.js"></script>
 
 <script>
@@ -99,3 +100,8 @@ If you'd like to add support for your language, simply add a `[lang].json` file 
 ### Building
 
 Simply run `yarn build` in the root directory to build production versions of each package
+
+
+### Publishing
+
+Go to each of the directories in `packages/`, bump version numbers, and run `yarn publish`

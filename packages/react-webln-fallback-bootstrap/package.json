@@ -4,6 +4,7 @@
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "unpkg": "umd/react-webln-fallback.min.js",
+  "repository": "https://github.com/joule-labs/react-webln-fallback",
   "license": "MIT",
   "files": [
     "cjs",
