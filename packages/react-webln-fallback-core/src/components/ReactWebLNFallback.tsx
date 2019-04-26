@@ -23,8 +23,9 @@ export interface ReactWebLNFallbackProps {
 type Props = ReactWebLNFallbackProps;
 
 interface State {
-  isProvidingWebLN: boolean;
   activePrompt: Partial<MethodComponentProps> | null;
+  paymentPreimage: string | undefined;
+  isProvidingWebLN: boolean;
   i18nLng?: string;
   t: typeof i18next.t;
 }
@@ -36,10 +37,21 @@ interface WindowWithWebLN extends Window {
 
 const weblnWindow = window as WindowWithWebLN;
 
+let closePromptHandler: (() => void) | undefined;
+export function closePrompt() {
+  closePromptHandler && closePromptHandler();
+}
+
+let paymentCompleteHandler: ((preimage: string) => void) | undefined;
+export function paymentComplete(preimage: string) {
+  paymentCompleteHandler && paymentCompleteHandler(preimage);
+}
+
 export class ReactWebLNFallback extends React.PureComponent<Props, State> {
   state: State = {
-    isProvidingWebLN: false,
     activePrompt: null,
+    paymentPreimage: undefined,
+    isProvidingWebLN: false,
     i18nLng: this.props.i18nLng,
     t: (k: any) => k,
   };
@@ -69,8 +81,19 @@ export class ReactWebLNFallback extends React.PureComponent<Props, State> {
   }
 
   async componentDidMount() {
+    // Setup handlers for this component
+    closePromptHandler = this.closePrompt;
+    paymentCompleteHandler = this.paymentComplete;
+
+    // Initialize i18n and get translate function
     const t = await i18nInit();
     this.setState({ t });
+  }
+
+  componentWillUnmount() {
+    closePromptHandler = undefined;
+    paymentCompleteHandler = undefined;
+    clearTimeout(this.paymentCompleteCloseTimeout);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -86,7 +109,7 @@ export class ReactWebLNFallback extends React.PureComponent<Props, State> {
 
   render() {
     const { methodComponents } = this.props;
-    const { activePrompt, isProvidingWebLN, t, i18nLng } = this.state;
+    const { activePrompt, isProvidingWebLN, t, i18nLng, paymentPreimage } = this.state;
 
     // Don't render anything if user has their own WebLN client, or we have
     // no active prompt
@@ -100,7 +123,14 @@ export class ReactWebLNFallback extends React.PureComponent<Props, State> {
       return null;
     }
 
-    return <MethodComponent {...activePrompt as MethodComponentProps} t={t} i18nLng={i18nLng} />;
+    return (
+      <MethodComponent
+        {...activePrompt as MethodComponentProps}
+        t={t}
+        i18nLng={i18nLng}
+        paymentPreimage={paymentPreimage}
+      />
+    );
   }
 
   private attachWebLNToWindow() {
@@ -122,14 +152,28 @@ export class ReactWebLNFallback extends React.PureComponent<Props, State> {
         args,
         onApprove: (res: any) => {
           resolve(res);
-          this.setState({ activePrompt: null });
+          this.closePrompt();
         },
         onReject: (msg: any) => {
           reject(new RejectionError(msg));
-          this.setState({ activePrompt: null });
+          this.closePrompt();
         },
       };
       this.setState({ activePrompt });
+    });
+  };
+
+  private closePrompt = () => {
+    this.setState({
+      activePrompt: null,
+      paymentPreimage: undefined,
+    });
+  };
+
+  private paymentCompleteCloseTimeout: any;
+  private paymentComplete = (preimage: string) => {
+    this.setState({ paymentPreimage: preimage }, () => {
+      this.paymentCompleteCloseTimeout = setTimeout(this.closePrompt, 500);
     });
   };
 }

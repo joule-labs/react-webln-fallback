@@ -13,6 +13,7 @@ export interface MethodComponentProps {
   args: any;
   t: typeof i18next.t;
   i18nLng?: string;
+  paymentPreimage?: string;
   onApprove(res: any): void;
   onReject(msg: string): void;
 }

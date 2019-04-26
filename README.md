@@ -6,6 +6,14 @@ This is a set of React components and standalone libraries that provides fallbac
 
 Check out the demo here: https://react-fallback.webln.dev/
 
+## Limitations
+
+Before you dive in, you should know what this library **doesn't** do:
+
+* **It doesn't handle payment events**. These components do not hook into your node, so you will need to trigger some methods on certain node events yourself. Otherwise the components will remain open and inert, since they aren't listening on their own. See [Event Handling](#event-handling) for more information.
+* **It doesn't handle validation**. This may change in future versions, but validation requires importing some heavy libraries, and should be done by your app anyway. Trusting input from all WebLN clients isn't a good idea, since even apps or extensions could provide you invalid data.
+* **It doesn't handle every browser under the sun.** It hasn't been tested extensively, but a lot of the component libraries used don't support old versions of IE and Safari.
+
 ## Styles
 
 React WebLN Fallback comes in 4 styles:
@@ -65,11 +73,41 @@ If you're not using React and / or don't have a build system setup, you can use 
 The standalone version bundles React with it to allow for use even with non-React applications. If you are already using React and don't want it bundled twice, you should use the node module (instructions above) instead of the UMD script.
 
 
+## Event Handling & Methods
+
+The SendPayment component doesn't hook into your node, so it doesn't automatically know when a payment has been made. This means that your app will need to alert the library when that happens. Two functions have been provided for you to handle this:
+
+### paymentComplete(preimage: string)
+
+Displays a success message to the user, and auto-close the modal shortly after. This only happens if SendPayment is open, otherwise it's a no-op (With a console warning in development, if that happens.) You should pass the preimage string, so that your `webln.sendPayment` callback receives it too.
+
+```tsx
+// Module Style
+import { paymentComplete } from 'react-webln-fallback-[style]';
+paymentComplete(response.preimage);
+
+// UMD Style
+ReactWebLNFallback.closePrompt(response.preimage);
+```
+
+### closePrompt()
+
+If something bad happens with the payment, or you otherwise just want to return the user to your app immediately, calling this will close _any_ prompt, not just SendPayment. It's safe to call even if there are no prompts open, so just fire-and-forget as needed.
+
+```tsx
+// Module Style
+import { closePrompt } from 'react-webln-fallback-[style]';
+closePrompt();
+
+// UMD Style
+ReactWebLNFallback.closePrompt();
+```
+
 ## Localization
 
 React WebLN Fallback supports the following languages:
 
-* English
+* English (en)
 
 If you'd like to add support for your language, simply add a `[lang].json` file to `packages/react-webln-fallback-core/src/i18n/` and add the following code to `index.ts` in that folder:
 
