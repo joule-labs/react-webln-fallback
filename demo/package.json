@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "NODE_ENV=production webpack",
-    "publish": "npm run build && gh-pages -d dist"
+    "ghpages": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@babel/core": "7.4.0",
