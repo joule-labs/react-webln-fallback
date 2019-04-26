@@ -21,7 +21,7 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
     const [invoiceReqs] = args as Parameters<WebLNProvider['makeInvoice']>;
 
     return (
-      <Modal open size="small" closeOnDimmerClick={false} onClose={this.handleReject}>
+      <Modal open size="tiny" closeOnDimmerClick={false} onClose={this.handleReject}>
         <Modal.Header>{t('react-webln-fallback.invoice.title')}</Modal.Header>
         <Modal.Content>
           <MakeInvoiceInstructions args={invoiceReqs} t={t} />

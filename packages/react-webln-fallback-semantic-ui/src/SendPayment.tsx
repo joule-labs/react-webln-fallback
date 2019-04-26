@@ -16,7 +16,7 @@ export default class SendPayment extends React.PureComponent<Props> {
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
 
     return (
-      <Modal open size="small" closeOnDimmerClick={false} onClose={this.handleReject}>
+      <Modal open size="tiny" closeOnDimmerClick={false} onClose={this.handleReject}>
         <Modal.Header>{t('react-webln-fallback.send.title')}</Modal.Header>
         <Modal.Content>
           <Grid stackable>

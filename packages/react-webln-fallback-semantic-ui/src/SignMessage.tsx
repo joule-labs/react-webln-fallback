@@ -20,7 +20,7 @@ export default class SignMessage extends React.PureComponent<Props, State> {
     const { signature } = this.state;
 
     return (
-      <Modal open size="small" closeOnDimmerClick={false} onClose={this.handleReject}>
+      <Modal open size="tiny" closeOnDimmerClick={false} onClose={this.handleReject}>
         <Modal.Header>{t('react-webln-fallback.sign.title')}</Modal.Header>
         <Modal.Content>
           <p>

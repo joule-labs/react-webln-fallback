@@ -10,7 +10,7 @@ export default class VerifyMessage extends React.PureComponent<Props> {
     const { args, t } = this.props;
 
     return (
-      <Modal open size="small" closeOnDimmerClick={false} onClose={this.handleApprove}>
+      <Modal open size="tiny" closeOnDimmerClick={false} onClose={this.handleApprove}>
         <Modal.Header>Verify message</Modal.Header>
         <Modal.Content>
           <p>
