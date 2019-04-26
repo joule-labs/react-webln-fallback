@@ -4,18 +4,18 @@ This is a set of React components and standalone libraries that provides fallbac
 
 ## Demo Example
 
-Check out the demo here: https://react.webln.dev/
+Check out the demo here: https://react-fallback.webln.dev/
 
 ## Styles
 
 React WebLN Fallback comes in 4 styles:
 
-* [`react-webln-fallback-bootstrap`](https://www.npmjs.com/package/react-webln-fallback-bootstrap) - using [Bootstrap](https://getbootstrap.com/) and [`react-bootstrap`](https://www.npmjs.com/package/react-bootstrap)
 * [`react-webln-fallback-antd`](https://www.npmjs.com/package/react-webln-fallback-antd) - using [Ant Design](https://ant.design/)
+* [`react-webln-fallback-bootstrap`](https://www.npmjs.com/package/react-webln-fallback-bootstrap) - using [Bootstrap](https://getbootstrap.com/) and [`react-bootstrap`](https://www.npmjs.com/package/react-bootstrap)
 * [`react-webln-fallback-material-ui`](https://www.npmjs.com/package/react-webln-fallback-material-ui) - using [Material UI](https://material-ui.com/)
 * [`react-webln-fallback-semantic-ui`](https://www.npmjs.com/package/react-webln-fallback-semantic-ui) - using [Semantic UI](https://react.semantic-ui.com/)
 
-You can preview all of these styles in the [demo](https://react.webln.dev/).
+You can preview all of these styles in the [demo](https://react-fallback.webln.dev/).
 
 Using a style component does **not** include the styles for the associated library, the expectation is that you have included the styles somewhere in your project. Please refer to the associated library for instructions on including its styling.
 
@@ -25,7 +25,7 @@ If you the available styles aren't to your liking, you can create your own using
 
 Include the component towards the top of your root component and you're good to go:
 
-```ts
+```tsx
 import { ReactWebLNFallback } from 'react-webln-fallback-[style]`;
 
 ReactDOM.render(
@@ -42,12 +42,10 @@ The component also takes in the following props (all optional):
 |------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | supportedMethods | Array<WebLNMethod>                      | An array of the WebLN methods that the component will support. Defaults to all methods in the WebLNMethod enum.                                                                                  |
 | methodComponents | { [key: WebLNMethod]: React.Component } | An object keyed by WebLN method to component. Each component receives the WebLN method parameters as its arguments. See our components for example.                                              |
-| i18next          | `i18next.i18n`                          | Your own `i18next` instance. If you don't want to pass this, you can pass the other i18next* props instead. |
-| i18nextLng       | `i18next.Language`                      | [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Defaults to [i18next-browser-langaugedetector](https://www.npmjs.com/package/i18next-browser-languagedetector) |
-| i18nextResource  | `i18next.Resource`                      | A set of language resources to draw from instead of our own. Resource will be merged with our own so that languages or keys you leave out are still covered. |
+| i18nextLng       | `i18next.Language`                      | [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Defaults to using [i18next-browser-langaugedetector](https://www.npmjs.com/package/i18next-browser-languagedetector) for language auto-detection |
 | overrideWebLN    | boolean                                 | Forcefully user-provided WebLN client. Not recommended in production, mainly for demoing & testing.                                                                                              |
 
-## Installation & usage (Standalone)
+## Installation & usage (Standalone UMD)
 
 If you're not using React and / or don't have a build system setup, you can use the standalone versions of each style. Simply include the script for the style you want, call init with an element to mount to, and you're good to go.
 
@@ -63,34 +61,41 @@ If you're not using React and / or don't have a build system setup, you can use 
 <div id="react-webln-fallback"></div>
 ```
 
-The standalone version uses [Preact](https://preactjs.com) instead of React to keep the bundle size down. If you want to use React instead, or already have (P)React in your code, you should use the node module instead of the UMD script.
+The standalone version bundles React with it to allow for use even with non-React applications. If you are already using React and don't want it bundled twice, you should use the node module (instructions above) instead of the UMD script.
 
 
 ## Localization
 
-React WebLN Fallback supports multiple languages, but requires a little configuration on your end to support them. You can pass the `lng` prop to manually specify a language instead of having the component automatically detect,and optionally you can also pass a `translations` dict to specify what strings to render, keyed by the lng key.
+React WebLN Fallback supports the following languages:
 
-Languages are keyed by [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), and the translation keys for each language can be found by looking at [one of ours as an example](en.json). Any keys you leave out in this will use our default.
+* English
 
-Example:
-```tsx
-const translations = {
-  en: {
-    send: {
-      help: 'Need help? Check out our guide at https://mycustomurl.com/',
-      // ...
-    },
-    // ...
-  },
-  fr: {
-    // ...
-  },
-  // ...
-}
+If you'd like to add support for your language, simply add a `[lang].json` file to `packages/react-webln-fallback-core/src/i18n/` and add the following code to `index.ts` in that folder:
 
-<ReactWebLN lng="en" translations={translations} />
+```diff
+ import en from './en.json';
++import fr from './fr.json';
+
+ const resources = {
+   en: { translation: en },
++  fr: { translation: fr },
+ };
 ```
 
 ## Development
 
-Fill me out.
+### Requirements
+
+* Node 8+
+* Yarn 1+ (many commands use this, so npm will not be enough)
+
+### Development
+
+* Run `yarn link-packages` in the root directory to install dependencies and link all of the packages together (core to each of the styles, each of the styles to the demo).
+* Go into the sub-package folder you want to work on and run `yarn dev`
+* Go into the demo folder and run `yarn dev`
+* (Optional) if working on core, you'll need to be running yarn dev in its package folder and one of the style package folders to actually test it.
+
+### Building
+
+Simply run `yarn build` in the root directory to build production versions of each package

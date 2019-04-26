@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c && NODE_ENV=development webpack && NODE_ENV=production webpack"
+    "build": "rollup -c && NODE_ENV=development webpack && NODE_ENV=production webpack",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "qrcode.react": "0.9.3",
