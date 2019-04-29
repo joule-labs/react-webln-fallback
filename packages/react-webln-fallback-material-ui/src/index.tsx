@@ -34,3 +34,5 @@ export default class MaterialUIReactWebLNFallback extends React.PureComponent<Pr
     )
   }
 }
+
+export { closePrompt, paymentComplete } from 'react-webln-fallback-core';

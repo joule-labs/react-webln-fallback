@@ -159,7 +159,10 @@ export class ReactWebLNFallback extends React.PureComponent<Props, State> {
           this.closePrompt();
         },
       };
-      this.setState({ activePrompt });
+      this.setState({
+        activePrompt,
+        paymentPreimage: undefined,
+      });
     });
   };
 
@@ -172,8 +175,6 @@ export class ReactWebLNFallback extends React.PureComponent<Props, State> {
 
   private paymentCompleteCloseTimeout: any;
   private paymentComplete = (preimage: string) => {
-    this.setState({ paymentPreimage: preimage }, () => {
-      this.paymentCompleteCloseTimeout = setTimeout(this.closePrompt, 500);
-    });
+    this.setState({ paymentPreimage: preimage });
   };
 }

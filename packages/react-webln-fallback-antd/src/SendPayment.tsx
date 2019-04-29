@@ -18,56 +18,89 @@ type Props = MethodComponentProps;
 
 export default class SendPayment extends React.PureComponent<Props> {
   render() {
-    const { args, t } = this.props;
+    const { args, t, paymentPreimage } = this.props;
     const [paymentRequest] = args as Parameters<WebLNProvider['sendPayment']>;
+
+    let content;
+    let footer;
+    let onCancel;
+    let noEasyClose;
+    if (paymentPreimage) {
+      footer = null;
+      onCancel = this.handleApprove;
+      content = (
+        <div style={{ textAlign: 'center' }}>
+          <Icon
+            type="check-circle"
+            style={{ color: '#52c41a', fontSize: '5rem', marginBottom: '1rem' }}
+          />
+          <h2>{t('react-webln-fallback.send.success')}</h2>
+          <Button type="primary" size="large" onClick={this.handleApprove}>
+            {t('react-webln-fallback.common.continue')}
+          </Button>
+        </div>
+      );
+    } else {
+      onCancel = this.handleReject;
+      noEasyClose = true;
+      content = (
+        <>
+          <Row type="flex" gutter={20} align="middle" justify="center">
+            <Col xs={24} sm={9}>
+              <div style={{
+                padding: 10,
+                marginBottom: 10,
+                borderRadius: 4,
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+              }}>
+                <QRCode
+                  value={paymentRequest.toUpperCase()}
+                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                />
+              </div>
+            </Col>
+            <Col xs={24} sm={15}>
+              <Input.TextArea
+                value={paymentRequest}
+                rows={5}
+                style={{ marginBottom: '10px' }}
+                readOnly
+              />
+              <Button href={`lightning:${paymentRequest}`} type="primary" block>
+                <Icon type="thunderbolt" theme="filled" />
+                {' '}
+                {t('react-webln-fallback.send.open')}
+              </Button>
+            </Col>
+          </Row>
+          <Divider>{t('react-webln-fallback.common.or')}</Divider>
+          <CLIHelp method={WebLNMethod.sendPayment} args={args} t={t} />
+        </>
+      );
+    }
 
     return (
       <Modal
         title={t('react-webln-fallback.send.title')}
-        okText={t('react-webln-fallback.common.submit')}
         cancelText={t('react-webln-fallback.common.cancel')}
-        onOk={this.handleApprove}
-        onCancel={this.handleReject}
-        maskClosable={false}
+        onCancel={onCancel}
+        okButtonProps={{ style: { display: 'none' } }}
+        footer={footer}
+        maskClosable={!noEasyClose}
         visible
       >
-        <Row type="flex" gutter={20} align="middle" justify="center">
-          <Col xs={24} sm={9}>
-            <div style={{
-              padding: 10,
-              marginBottom: 10,
-              borderRadius: 4,
-              border: '1px solid rgba(0, 0, 0, 0.1)',
-            }}>
-              <QRCode
-                value={paymentRequest.toUpperCase()}
-                style={{ display: 'block', width: '100%', height: 'auto' }}
-              />
-            </div>
-          </Col>
-          <Col xs={24} sm={15}>
-            <Input.TextArea
-              value={paymentRequest}
-              rows={5}
-              style={{ marginBottom: '10px' }}
-              readOnly
-            />
-            <Button href={`lightning:${paymentRequest}`} type="primary" block>
-              <Icon type="thunderbolt" theme="filled" /> {t('react-webln-fallback.send.open')}
-            </Button>
-          </Col>
-        </Row>
-        <Divider>{t('react-webln-fallback.common.or')}</Divider>
-        <CLIHelp method={WebLNMethod.sendPayment} args={args} t={t} />
+        {content}
       </Modal>
     );
   }
 
   private handleApprove = () => {
-    this.props.onApprove({ preimage: '' } as SendPaymentResponse);
+    const { onApprove, paymentPreimage } = this.props;
+    onApprove({ preimage: paymentPreimage } as SendPaymentResponse);
   };
 
   private handleReject = () => {
-    this.props.onReject(this.props.t('react-webln-fallback.send.reject'));
+    const { onReject, t } = this.props;
+    onReject(t('react-webln-fallback.send.reject'));
   };
 }

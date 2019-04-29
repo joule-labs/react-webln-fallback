@@ -4,6 +4,7 @@
       "cancel": "Cancel",
       "ok": "OK",
       "submit": "Submit",
+      "continue": "Continue",
       "or": "or",
       "unit": "satoshis",
       "busy": "Currently busy with another prompt"
@@ -11,7 +12,8 @@
     "send": {
       "title": "Send payment",
       "open": "Open in Wallet",
-      "reject": "Closed before making payment"
+      "reject": "Closed before making payment",
+      "success": "Payment successful!"
     },
     "invoice": {
       "title": "Provide an invoice",

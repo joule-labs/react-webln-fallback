@@ -34,3 +34,5 @@ export default class AntdReactWebLNFallback extends React.PureComponent<Props> {
     )
   }
 }
+
+export { closePrompt, paymentComplete } from 'react-webln-fallback-core';

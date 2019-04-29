@@ -34,3 +34,5 @@ export default class BootstrapReactWebLNFallback extends React.PureComponent<Pro
     )
   }
 }
+
+export { closePrompt, paymentComplete } from 'react-webln-fallback-core';

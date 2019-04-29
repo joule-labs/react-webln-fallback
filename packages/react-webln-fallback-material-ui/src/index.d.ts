@@ -5,4 +5,4 @@ declare type Props = Partial<Omit<ReactWebLNFallbackProps, 'methodComponents'>>;
 export default class MaterialUIReactWebLNFallback extends React.PureComponent<Props> {
     render(): JSX.Element;
 }
-export {};
+export { closePrompt, paymentComplete } from 'react-webln-fallback-core';
