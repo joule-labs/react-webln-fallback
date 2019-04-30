@@ -659,6 +659,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.3.1":
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
+  integrity sha512-w0+uT71b6Yi7i5SE0co4NioIpSYS6lLiXvCzWzGSKvpK5vdQtCbICHMj+gbAKAOtxiV6HsVh/MBdaF9EQ6faSg==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@^7.3.4":
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.3.tgz#79888e452034223ad9609187a0ad1fe0d2ad4bdc"
@@ -807,6 +814,11 @@
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
   integrity sha1-wFTor02d11205jq8dviFFocU1LM=
+
+"@types/i18next@12.1.0":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/@types/i18next/-/i18next-12.1.0.tgz#7c3fd3dbe03f9531147033773bbd0ca4f474a180"
+  integrity sha512-qLyqTkp3ZKHsSoX8CNVYcTyTkxlm0aRCUpaUVetgkSlSpiNCdWryOgaYwgbO04tJIfLgBXPcy0tJ3Nl/RagllA==
 
 "@types/jss@^9.5.6":
   version "9.5.8"
@@ -3216,6 +3228,18 @@ hyphenate-style-name@^1.0.2:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.3.tgz#097bb7fa0b8f1a9cf0bd5c734cf95899981a9b48"
   integrity sha512-EcuixamT82oplpoJ2XU4pDtKGWQ7b00CD9f1ug9IaQ3p1bkHMiKCZ9ut9QDI6qsa6cpUuB+A/I+zLtdNK4n2DQ==
 
+i18next-browser-languagedetector@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-3.0.1.tgz#a47c43176e8412c91e808afb7c6eb5367649aa8e"
+  integrity sha512-WFjPLNPWl62uu07AHY2g+KsC9qz0tyMq+OZEB/H7N58YKL/JLiCz9U709gaR20Mule/Ppn+uyfVx5REJJjn1HA==
+
+i18next@15.0.9:
+  version "15.0.9"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-15.0.9.tgz#42536407a921bb5a8535a4c090a26f16827a1884"
+  integrity sha512-IdVj7DqErUuMbGuj2dFT431T7zKlmDci63eae6pNA/bMwgBZKT74/KnwHXE0WH7ivo2EV/LNme4pP4Yw6vB79w==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+
 iconv-lite@0.4.23:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
@@ -4884,6 +4908,19 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+  integrity sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=
+
+qrcode.react@0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-0.9.3.tgz#91de1287912bdc5ccfb3b091737b828d6ced60c5"
+  integrity sha512-gGd30Ez7cmrKxyN2M3nueaNLk/f9J7NDRgaD5fVgxGpPLsYGWMn9UQ+XnDpv95cfszTQTdaf4QGLNMf3xU0hmw==
+  dependencies:
+    prop-types "^15.6.0"
+    qr.js "0.0.0"
+
 qs@6.5.2, qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
@@ -5486,6 +5523,59 @@ react-transition-group@^2.6.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
+
+react-webln-fallback-antd@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-webln-fallback-antd/-/react-webln-fallback-antd-0.1.1.tgz#3e9a7d628250147d5bd17008969eec2d7d7f94c9"
+  integrity sha512-rO6WHbxEyJ4NApgMxmqe/v9t2nc7zWyRfwbP9vHo1mILQDZ2iEj7Zfa87yvmy3zZiKy2jCzthKM2IQ4SmJJujg==
+  dependencies:
+    qrcode.react "0.9.3"
+    react-webln-fallback-core "0.1.1"
+    ts-loader "5.3.3"
+    webpack "4.30.0"
+    webpack-cli "3.3.0"
+
+react-webln-fallback-bootstrap@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-webln-fallback-bootstrap/-/react-webln-fallback-bootstrap-0.1.1.tgz#382d6843751b7bf218403cfd20837cedada38014"
+  integrity sha512-/5UdT4+26E4cNsRtd0w+lwX28bdMOJMiOkkDsiEopr09M5H95ENtvwiELpSfxsXOsyON1rwbpplvjxSBtKrH6g==
+  dependencies:
+    "@types/i18next" "12.1.0"
+    qrcode.react "0.9.3"
+    react-webln-fallback-core "0.1.1"
+    ts-loader "5.3.3"
+    webpack "4.30.0"
+    webpack-cli "3.3.0"
+
+react-webln-fallback-core@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-webln-fallback-core/-/react-webln-fallback-core-0.1.1.tgz#ca8040afa0e0e61289127e5698562e527de10073"
+  integrity sha512-hfc9IctwX4w97LjdpxXbmlGlbFktECzUqcWwIAXhhncW8nNEKF9sXhdUcWfPmJc3FvXOpEqApTCFc/qDe1ndhw==
+  dependencies:
+    i18next "15.0.9"
+    i18next-browser-languagedetector "3.0.1"
+
+react-webln-fallback-material-ui@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-webln-fallback-material-ui/-/react-webln-fallback-material-ui-0.1.1.tgz#04d3ce3d606c5ac46fdb94a165f9a7563946d220"
+  integrity sha512-VGt4U7DcOWd/uVbHCr4oEXh9F8jgXcfoSDSPaEUKibRiP7YFlWgttff2jQ9uhZ2D9GN3WKAZHIr6ygvYMEa+jA==
+  dependencies:
+    qrcode.react "0.9.3"
+    react-webln-fallback-core "0.1.1"
+    ts-loader "5.3.3"
+    webpack "4.30.0"
+    webpack-cli "3.3.0"
+
+react-webln-fallback-semantic-ui@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-webln-fallback-semantic-ui/-/react-webln-fallback-semantic-ui-0.1.1.tgz#e40876d2b9aa5e918ebb7c52dc4b8d5227a6b4cc"
+  integrity sha512-IukmVJ53N330CPt85RMhGtWR0XHz7THNwa+K73fHkq+rbHDdKJghoCiOhym1yG5GfYfDnDxOMHTW+aiHIApkXQ==
+  dependencies:
+    qrcode.react "0.9.3"
+    react-webln-fallback-core "0.1.1"
+    ts-loader "5.3.3"
+    webpack "4.30.0"
+    webpack-cli "3.3.0"
 
 react@16.8.6:
   version "16.8.6"
@@ -6771,6 +6861,36 @@ webpack@4.29.6:
   version "4.29.6"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.29.6.tgz#66bf0ec8beee4d469f8b598d3988ff9d8d90e955"
   integrity sha512-MwBwpiE1BQpMDkbnUUaW6K8RFZjljJHArC6tWQJoFm0oQtfoSebtg4Y7/QHnJ/SddtjYLHaKGX64CFjG5rehJw==
+  dependencies:
+    "@webassemblyjs/ast" "1.8.5"
+    "@webassemblyjs/helper-module-context" "1.8.5"
+    "@webassemblyjs/wasm-edit" "1.8.5"
+    "@webassemblyjs/wasm-parser" "1.8.5"
+    acorn "^6.0.5"
+    acorn-dynamic-import "^4.0.0"
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
+    chrome-trace-event "^1.0.0"
+    enhanced-resolve "^4.1.0"
+    eslint-scope "^4.0.0"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^2.3.0"
+    loader-utils "^1.1.0"
+    memory-fs "~0.4.1"
+    micromatch "^3.1.8"
+    mkdirp "~0.5.0"
+    neo-async "^2.5.0"
+    node-libs-browser "^2.0.0"
+    schema-utils "^1.0.0"
+    tapable "^1.1.0"
+    terser-webpack-plugin "^1.1.0"
+    watchpack "^1.5.0"
+    webpack-sources "^1.3.0"
+
+webpack@4.30.0:
+  version "4.30.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.30.0.tgz#aca76ef75630a22c49fcc235b39b4c57591d33a9"
+  integrity sha512-4hgvO2YbAFUhyTdlR4FNyt2+YaYBYHavyzjCMbZzgglo02rlKi/pcsEzwCuCpsn1ryzIl1cq/u8ArIKu8JBYMg==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
