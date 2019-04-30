@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack",
+    "build": "rm -rf dist/ && NODE_ENV=production webpack",
     "ghpages": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
   "devDependencies": {
     "@types/react": "16.8.10",
     "@types/react-dom": "16.8.3",
+    "copy-webpack-plugin": "5.0.3",
     "gh-pages": "2.0.1",
     "webpack-dev-server": "3.3.1"
   }

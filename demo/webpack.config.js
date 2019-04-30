@@ -1,12 +1,14 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const publicPath = '/';
 
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
+const static = path.join(__dirname, 'static');
 
 const bundles = ['index', 'antd', 'bootstrap', 'material-ui', 'semantic-ui'];
 
@@ -28,6 +30,10 @@ const plugins = [
       inject: true,
     })
   )),
+  new CopyPlugin([{
+    from: static,
+    to: dist,
+  }]),
 ];
 
 // Loaders
