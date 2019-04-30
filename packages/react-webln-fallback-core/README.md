@@ -6,11 +6,11 @@ This package exports the following things:
 
 ## Components
 
-### ReactWebLNFallback
+### `ReactWebLNFallback`
 
 The base component for implementing a WebLN fallback component. Binds the WebLN provider on mount, and renders components per supported method when they're called.
 
-*Props*
+**Props**
 ```ts
 export interface ReactWebLNFallbackProps {
   supportedMethods: WebLNMethod[];
@@ -20,7 +20,7 @@ export interface ReactWebLNFallbackProps {
 }
 ```
 
-*Example*
+**Example**
 ```tsx
 <ReactWebLNFallback
   supportedMethods={[
@@ -40,11 +40,11 @@ export interface ReactWebLNFallbackProps {
 />
 ```
 
-### MakeInvoiceInstructions
+### `MakeInvoiceInstructions`
 
 Renders instructions for the requirements of an invoice. Either a basic text description for fixed amounts, or a bullet list for complex invoices.
 
-*Props*
+**Props**
 ```ts
 export interface MakeInvoiceInstructionsProps {
   // The first arg in webln.makeInvoice, string | number | RequestInvoiceArgs.
@@ -54,7 +54,7 @@ export interface MakeInvoiceInstructionsProps {
 }
 ```
 
-*Example*
+**Example**
 ```tsx
 const args = {
   minimumAmount: 100,
@@ -63,6 +63,29 @@ const args = {
 };
 <MakeInvoiceInstructions args={args} t={t} />
 ```
+
+## Component Functions
+
+### `paymentComplete(preimage: string)`
+
+Call after using `webln.sendPayment` when the payment is complete. Provides the preimage for the sendPayment callback, as well as displaying a success message to the user.
+
+**Example**
+```tsx
+import { paymentComplete } from 'react-webln-fallback-core';
+
+webln.sendPayment(bolt11).then(res => /* ... */);
+
+myInvoiceSocket.on(invoice => {
+  if (invoice.settled) {
+    paymentComplete(invoice.r_preimage);
+  }
+});
+```
+
+### `closePrompt()`
+
+Simple fire-and-forget function, closes any open prompts.
 
 ## Utility Functions
 
