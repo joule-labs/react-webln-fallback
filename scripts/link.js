@@ -11,6 +11,7 @@ const corePackage = 'react-webln-fallback-core';
 const subPackages = [
   'react-webln-fallback-antd',
   'react-webln-fallback-bootstrap',
+  'react-webln-fallback-reactstrap',
   'react-webln-fallback-material-ui',
   'react-webln-fallback-semantic-ui',
 ];

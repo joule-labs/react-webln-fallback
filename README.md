@@ -20,6 +20,7 @@ React WebLN Fallback comes in 4 styles:
 
 * [`react-webln-fallback-antd`](https://www.npmjs.com/package/react-webln-fallback-antd) - using [Ant Design](https://ant.design/)
 * [`react-webln-fallback-bootstrap`](https://www.npmjs.com/package/react-webln-fallback-bootstrap) - using [Bootstrap](https://getbootstrap.com/) and [`react-bootstrap`](https://www.npmjs.com/package/react-bootstrap)
+* [`react-webln-fallback-reactstrap`](https://www.npmjs.com/package/react-webln-fallback-reactstrap) - using [Bootstrap](https://getbootstrap.com/) and [`reactstrap`](https://www.npmjs.com/package/reactstrap)
 * [`react-webln-fallback-material-ui`](https://www.npmjs.com/package/react-webln-fallback-material-ui) - using [Material UI](https://material-ui.com/)
 * [`react-webln-fallback-semantic-ui`](https://www.npmjs.com/package/react-webln-fallback-semantic-ui) - using [Semantic UI](https://react.semantic-ui.com/)
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Input, Button } from 'reactstrap';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import CLIHelp from './CLIHelp';
 
@@ -12,18 +11,18 @@ export default class VerifyMessage extends React.PureComponent<Props> {
 
     return (
       <Modal onHide={this.handleApprove} backdrop="static" show>
-        <Modal.Header closeButton>
-          <Modal.Title>{t('react-webln-fallback.verify.title')}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+        <ModalHeader toggle={this.handleApprove}>
+          {t('react-webln-fallback.verify.title')}
+        </ModalHeader>
+        <ModalBody>
           <p>{t('react-webln-fallback.verify.instructions')}</p>
           <CLIHelp method={WebLNMethod.verifyMessage} args={args} t={t} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={this.handleApprove}>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={this.handleApprove}>
             {t('react-webln-fallback.common.ok')}
           </Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     );
   }

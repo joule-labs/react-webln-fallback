@@ -13,8 +13,12 @@ const STYLES = {
     link: 'https://ant.design',
   },
   bootstrap: {
-    name: 'Bootstrap',
+    name: 'Bootstrap (react-bootstrap)',
     link: 'https://react-bootstrap.github.io/',
+  },
+  reactstrap: {
+    name: 'Bootstrap (reactstrap)',
+    link: 'https://reactstrap.github.io/',
   },
   'semantic-ui': {
     name: 'Semantic UI',

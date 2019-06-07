@@ -10,7 +10,14 @@ const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
 const static = path.join(__dirname, 'static');
 
-const bundles = ['index', 'antd', 'bootstrap', 'material-ui', 'semantic-ui'];
+const bundles = [
+  'index',
+  'antd',
+  'bootstrap',
+  'reactstrap',
+  'material-ui',
+  'semantic-ui',
+];
 
 // Construct some things dynamically based on bundles array
 const entry = bundles.reduce((prev, bundle) => {
@@ -96,7 +103,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   name: 'main',
   target: 'web',
-  devtool: 'cheap-module-inline-source-map',
+  devtool: isDev ? 'cheap-module-inline-source-map' : 'source-map',
   entry,
   plugins,
   output: {
