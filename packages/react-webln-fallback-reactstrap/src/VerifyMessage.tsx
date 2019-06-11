@@ -10,7 +10,7 @@ export default class VerifyMessage extends React.PureComponent<Props> {
     const { args, t } = this.props;
 
     return (
-      <Modal onHide={this.handleApprove} backdrop="static" show>
+      <Modal onHide={this.handleApprove} backdrop="static" isOpen>
         <ModalHeader toggle={this.handleApprove}>
           {t('react-webln-fallback.verify.title')}
         </ModalHeader>
