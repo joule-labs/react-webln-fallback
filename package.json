@@ -1,6 +1,6 @@
 {
   "name": "react-webln-fallback-packages",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "main": "index.js",
   "author": "Will O'Beirne <wbobeirne@gmail.com>",
   "license": "MIT",

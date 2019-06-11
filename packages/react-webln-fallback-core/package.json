@@ -1,6 +1,6 @@
 {
   "name": "react-webln-fallback-core",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "unpkg": "umd/index.min.js",
@@ -13,7 +13,8 @@
   ],
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "i18next": "15.0.9",

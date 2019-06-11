@@ -16,7 +16,14 @@ module.exports = {
   module: {
     rules: [{
       test: /\.tsx?$/,
-      use: 'ts-loader',
+      use: [{
+        loader: 'ts-loader',
+        options: {
+          compilerOptions: {
+            declaration: false,
+          },
+        },
+      }],
     }],
   },
   resolve: {
