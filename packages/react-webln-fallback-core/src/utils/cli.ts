@@ -51,7 +51,8 @@ export const nodeInfo: { [key in NodeType]: NodeInfo } = {
     cli: 'lncli',
     commands: {
       [WebLNMethod.getInfo]: () => 'getinfo',
-      [WebLNMethod.sendPayment]: (args: any) => `sendpayment ${args[0]}`,
+      [WebLNMethod.sendPayment]: (args: any) =>
+        `sendpayment --pay_req=${args[0]}`,
       [WebLNMethod.makeInvoice]: (rawArgs: any) => {
         const args = normalizeInvoiceArgs(rawArgs[0]);
         const cliArgs = {
@@ -71,7 +72,7 @@ export const nodeInfo: { [key in NodeType]: NodeInfo } = {
     cli: 'lightning-cli',
     commands: {
       [WebLNMethod.getInfo]: () => 'getinfo',
-      [WebLNMethod.sendPayment]: (args: any) => `sendpayment ${args[0]}`,
+      [WebLNMethod.sendPayment]: (args: any) => `pay ${args[0]}`,
       [WebLNMethod.makeInvoice]: (rawArgs: any) => {
         const args = normalizeInvoiceArgs(rawArgs[0]);
         return `invoice ${args.amount || args.defaultAmount || '[sats]'} [label] '${args.defaultMemo || 'description'}'`;
