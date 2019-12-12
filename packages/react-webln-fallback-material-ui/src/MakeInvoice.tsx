@@ -65,7 +65,7 @@ export default class MakeInvoice extends React.PureComponent<Props, State> {
   };
 
   private handleApprove = () => {
-    this.props.onApprove({ paymentRequest: '' } as RequestInvoiceResponse);
+    this.props.onApprove({ paymentRequest: this.state.paymentRequest } as RequestInvoiceResponse);
   };
 
   private handleReject = () => {
