@@ -35,7 +35,7 @@ If you the available styles aren't to your liking, you can create your own using
 Include the component towards the top of your root component and you're good to go:
 
 ```tsx
-import { ReactWebLNFallback } from 'react-webln-fallback-[style]`;
+import { ReactWebLNFallback } from 'react-webln-fallback-[style]';
 
 ReactDOM.render(
   <>
