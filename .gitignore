@@ -6,3 +6,4 @@ umd
 *.log
 .rpt2_cache
 .vscode
+webpack-stats.json
