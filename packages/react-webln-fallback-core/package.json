@@ -21,7 +21,7 @@
     "i18next-browser-languagedetector": "3.0.1"
   },
   "peerDependencies": {
-    "react": ">=15",
+    "react": ">=16",
     "webln": ">=0.2.0"
   }
 }

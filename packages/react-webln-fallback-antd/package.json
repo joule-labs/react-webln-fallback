@@ -18,13 +18,10 @@
   },
   "dependencies": {
     "qrcode.react": "0.9.3",
-    "react-webln-fallback-core": "file:../react-webln-fallback-core",
-    "ts-loader": "5.3.3",
-    "webpack": "4.30.0",
-    "webpack-cli": "3.3.0"
+    "react-webln-fallback-core": "file:../react-webln-fallback-core"
   },
   "peerDependencies": {
-    "antd": "^3.0.0",
+    "antd": "^4.0.0",
     "react": ">=16",
     "react-dom": ">=16",
     "webln": "^0.2.0"

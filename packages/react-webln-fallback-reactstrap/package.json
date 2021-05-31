@@ -17,12 +17,9 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@types/i18next": "12.1.0",
-    "qrcode.react": "0.9.3",
-    "react-webln-fallback-core": "file:../react-webln-fallback-core",
-    "ts-loader": "5.3.3",
-    "webpack": "4.30.0",
-    "webpack-cli": "3.3.0"
+    "@types/i18next": "^12.1.0",
+    "qrcode.react": "^0.9.3",
+    "react-webln-fallback-core": "file:../react-webln-fallback-core"
   },
   "peerDependencies": {
     "bootstrap": "^4.0.0",
