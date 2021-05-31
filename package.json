@@ -1,9 +1,8 @@
 {
-  "name": "react-webln-fallback-packages",
-  "version": "0.1.4",
-  "main": "index.js",
+  "private": true,
   "author": "Will O'Beirne <wbobeirne@gmail.com>",
   "license": "MIT",
+  "workspaces": ["packages/*"],
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "node ./scripts/build.js",
