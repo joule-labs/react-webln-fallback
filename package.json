@@ -5,7 +5,45 @@
   "author": "Will O'Beirne <wbobeirne@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "build": "node ./scripts/build.js",
     "link-packages": "node ./scripts/link.js"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.0",
+    "@babel/preset-env": "7.4.2",
+    "@babel/preset-react": "7.0.0",
+    "@material-ui/core": "3.9.3",
+    "@material-ui/icons": "3.0.2",
+    "@types/qrcode.react": "0.8.2",
+    "@types/react": "16.8.10",
+    "@types/react-dom": "16.8.3",
+    "@types/reactstrap": "8.0.1",
+    "antd": "3.16.1",
+    "bootstrap": "4.3.1",
+    "lerna": "^4.0.0",
+    "react": "16.8.6",
+    "react-bootstrap": "1.0.0-beta.6",
+    "react-dom": "16.8.6",
+    "reactstrap": "8.0.0",
+    "rollup": "1.7.4",
+    "rollup-plugin-babel": "4.3.2",
+    "rollup-plugin-commonjs": "9.2.2",
+    "rollup-plugin-json": "4.0.0",
+    "rollup-plugin-local-resolve": "1.0.7",
+    "rollup-plugin-node-resolve": "4.0.1",
+    "rollup-plugin-peer-deps-external": "2.2.0",
+    "rollup-plugin-typescript2": "0.20.1",
+    "semantic-ui-react": "0.86.0",
+    "typescript": "3.4.1",
+    "webln": "0.2.0"
+  },
+  "dependencies": {
+    "react-webln-fallback-antd": "file:packages/react-webln-fallback-antd",
+    "react-webln-fallback-bootstrap": "file:packages/react-webln-fallback-bootstrap",
+    "react-webln-fallback-core": "file:packages/react-webln-fallback-core",
+    "react-webln-fallback-material-ui": "file:packages/react-webln-fallback-material-ui",
+    "react-webln-fallback-reactstrap": "file:packages/react-webln-fallback-reactstrap",
+    "react-webln-fallback-semantic-ui": "file:packages/react-webln-fallback-semantic-ui"
   }
 }
