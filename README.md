@@ -131,10 +131,10 @@ If you'd like to add support for your language, simply add a `[lang].json` file 
 
 ### Development
 
-* Run `yarn link-packages` in the root directory to install dependencies and link all of the packages together (core to each of the styles, each of the styles to the demo).
-* Go into the sub-package folder you want to work on and run `yarn dev`
-* Go into the demo folder and run `yarn dev`
-* (Optional) if working on core, you'll need to be running yarn dev in its package folder and one of the style package folders to actually test it.
+This project uses Lerna to coordinate dependencies.
+
+* Install dependencies and setup local links with `yarn && yarn bootstrap`
+* Run `yarn dev` to simultaneously run all package's dev commands and start the demo webserver at `localhost:8080`
 
 ### Building
 
@@ -143,4 +143,4 @@ Simply run `yarn build` in the root directory to build production versions of ea
 
 ### Publishing
 
-Go to each of the directories in `packages/`, bump version numbers, and run `yarn publish`
+See https://github.com/lerna/lerna for more
