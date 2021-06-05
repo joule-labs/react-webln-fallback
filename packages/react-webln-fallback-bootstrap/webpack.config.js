@@ -28,7 +28,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.mjs', '.json'],
-    modules: [path.join(__dirname, 'node_modules')],
   },
   plugins: [
     new webpack.DefinePlugin({
