@@ -17,7 +17,7 @@ export default class SignMessage extends React.PureComponent<{}, State> {
     const { message, signature } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit} layout="vertical">
+      <Form onSubmitCapture={this.handleSubmit} layout="vertical">
         <Row gutter={20}>
           <Col xs={24} sm={12}>
             <Form.Item label="Message">
