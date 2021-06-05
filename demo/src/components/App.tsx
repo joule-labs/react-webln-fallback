@@ -1,10 +1,10 @@
 import React from 'react';
-import { Tabs, Dropdown, Menu, Button, Icon } from 'antd';
+import { Tabs, Dropdown, Menu, Button } from 'antd';
 import MakeInvoice from './MakeInvoice';
 import SendPayment from './SendPayment';
 import SignMessage from './SignMessage';
 import VerifyMessage from './VerifyMessage';
-import 'antd/dist/antd.less';
+import 'antd/dist/antd.css';
 import './App.less';
 
 const STYLES = {
@@ -34,15 +34,16 @@ type Style = keyof typeof STYLES;
 interface Props {
   style: Style;
   WebLNFallbackComponent: React.ComponentType<any>;
+  paymentComplete(preImage: string): void;
 }
 
 export default class App extends React.Component<Props> {
   render() {
-    const { style, WebLNFallbackComponent } = this.props;
+    const { style, WebLNFallbackComponent, paymentComplete } = this.props;
     const tabs = [{
       key: 'sendPayment',
       tab: 'Send Payment',
-      content: <SendPayment />,
+      content: <SendPayment paymentComplete={paymentComplete} />,
     }, {
       key: 'makeInvoice',
       tab: 'Make Invoice',
@@ -84,7 +85,7 @@ export default class App extends React.Component<Props> {
           <div className="App-header-right">
             <Dropdown overlay={styleMenu}>
               <Button>
-                {`Style: ${STYLES[style].name}`} <Icon type="down" />
+                Style: {STYLES[style].name}
               </Button>
             </Dropdown>
           </div>

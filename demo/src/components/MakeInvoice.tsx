@@ -80,7 +80,7 @@ export default class MakeInvoice extends React.PureComponent<{}, State> {
     return (
       <Row gutter={20}>
         <Col xs={24} sm={12}>
-          <Form className="MakeInvoice-form" layout="vertical" onSubmit={this.handleSubmit}>
+          <Form className="MakeInvoice-form" layout="vertical" onSubmitCapture={this.handleSubmit}>
             <div className="MakeInvoice-form-amounts">
               <div className="MakeInvoice-form-amounts-toggle">
                 <Radio.Group

@@ -37,10 +37,12 @@ const plugins = [
       inject: true,
     })
   )),
-  new CopyPlugin([{
-    from: static,
-    to: dist,
-  }]),
+  new CopyPlugin({
+    patterns: [{
+      from: static,
+      to: dist,
+    }],
+  }),
 ];
 
 // Loaders
@@ -58,7 +60,7 @@ const typescriptLoader = {
           '@babel/react',
           ['@babel/env', {
             useBuiltIns: 'entry',
-            corejs: 2,
+            corejs: 3,
           }],
         ],
       },
@@ -83,7 +85,9 @@ const lessLoader = {
     ...cssLoader.use,
     {
       loader: 'less-loader',
-      options: { javascriptEnabled: true },
+      options: {
+        lessOptions: { javascriptEnabled: true },
+      },
     },
   ],
 };
@@ -103,7 +107,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   name: 'main',
   target: 'web',
-  devtool: isDev ? 'cheap-module-inline-source-map' : 'source-map',
+  devtool: isDev ? 'inline-cheap-module-source-map' : 'source-map',
   entry,
   plugins,
   output: {
@@ -121,6 +125,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.mjs', '.json'],
-    modules: [path.join(__dirname, 'node_modules')],
+  },
+  devServer: {
+    contentBase: dist,
+    staticOptions: {
+      extensions: ['html'],
+    },
+    hot: true,
+    compress: true,
   },
 };

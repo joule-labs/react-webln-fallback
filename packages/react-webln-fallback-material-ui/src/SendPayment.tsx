@@ -12,11 +12,8 @@ import CheckIcon from '@material-ui/icons/CheckCircleOutline';
 import green from '@material-ui/core/colors/green';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
-import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
+import QRCode from 'qrcode.react';
 import CLIHelp from './CLIHelp';
-
-// Add SVG types to QRCode since it passes them through
-const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
 type Props = MethodComponentProps;
 
@@ -32,7 +29,7 @@ export default class SendPayment extends React.PureComponent<Props> {
       onClose = this.handleApprove;
       content = (
         <DialogContent>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', padding: 20 }}>
             <CheckIcon style={{ color: green[400], fontSize: '6rem' }} />
             <Typography variant="h5" style={{ marginTop: 20, marginBottom: 20 }}>
               {t('react-webln-fallback.send.success')}
@@ -50,7 +47,7 @@ export default class SendPayment extends React.PureComponent<Props> {
         <>
           <DialogTitle>{t('react-webln-fallback.send.title')}</DialogTitle>
           <DialogContent>
-            <Grid container spacing={16}>
+            <Grid container spacing={2}>
               <Grid item xs={12} sm={5}>
                 <Paper elevation={1}>
                   <div style={{ padding: 10 }}>

@@ -35,7 +35,7 @@ interface WindowWithWebLN extends Window {
   _webln: WebLNProvider;
 }
 
-const weblnWindow = window as WindowWithWebLN;
+const weblnWindow = window as any as WindowWithWebLN;
 
 let closePromptHandler: (() => void) | undefined;
 export function closePrompt() {
