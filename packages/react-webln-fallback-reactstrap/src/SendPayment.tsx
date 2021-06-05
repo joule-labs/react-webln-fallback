@@ -12,11 +12,8 @@ import {
 } from 'reactstrap';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
-import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
+import QRCode from 'qrcode.react';
 import CLIHelp from './CLIHelp';
-
-// Add SVG types to QRCode since it passes them through
-const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
 type Props = MethodComponentProps;
 

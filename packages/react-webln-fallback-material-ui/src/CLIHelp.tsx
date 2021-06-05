@@ -49,7 +49,7 @@ export default class CLIHelp extends React.PureComponent<Props, State> {
     );
   }
 
-  private handleTypeChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {
+  private handleTypeChange = (ev: React.ChangeEvent<{ name?: string; value: unknown }>) => {
     this.setState({ nodeType: ev.target.value } as any);
   };
 

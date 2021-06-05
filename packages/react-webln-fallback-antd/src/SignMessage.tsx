@@ -27,7 +27,7 @@ export default class SignMessage extends React.PureComponent<Props, State> {
         cancelText={t('react-webln-fallback.common.cancel')}
         onOk={this.handleApprove}
         onCancel={this.handleReject}
-        okButtonDisabled={!signature}
+        okButtonProps={{ disabled: !signature }}
         maskClosable={false}
         visible
       >

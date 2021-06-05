@@ -8,11 +8,8 @@ import Icon from 'antd/lib/icon';
 import Divider from 'antd/lib/divider';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
-import DefaultQRCode, { QRCodeProps } from 'qrcode.react';
+import QRCode from 'qrcode.react';
 import CLIHelp from './CLIHelp';
-
-// Add SVG types to QRCode since it passes them through
-const QRCode = DefaultQRCode as React.ComponentClass<QRCodeProps & React.HTMLProps<SVGElement>>;
 
 type Props = MethodComponentProps;
 
@@ -30,10 +27,6 @@ export default class SendPayment extends React.PureComponent<Props> {
       onCancel = this.handleApprove;
       content = (
         <div style={{ textAlign: 'center' }}>
-          <Icon
-            type="check-circle"
-            style={{ color: '#52c41a', fontSize: '5rem', marginBottom: '1rem' }}
-          />
           <h2>{t('react-webln-fallback.send.success')}</h2>
           <Button type="primary" size="large" onClick={this.handleApprove}>
             {t('react-webln-fallback.common.continue')}
@@ -45,7 +38,7 @@ export default class SendPayment extends React.PureComponent<Props> {
       noEasyClose = true;
       content = (
         <>
-          <Row type="flex" gutter={20} align="middle" justify="center">
+          <Row gutter={20} align="middle" justify="center">
             <Col xs={24} sm={9}>
               <div style={{
                 padding: 10,
@@ -67,8 +60,6 @@ export default class SendPayment extends React.PureComponent<Props> {
                 readOnly
               />
               <Button href={`lightning:${paymentRequest}`} type="primary" block>
-                <Icon type="thunderbolt" theme="filled" />
-                {' '}
                 {t('react-webln-fallback.send.open')}
               </Button>
             </Col>
