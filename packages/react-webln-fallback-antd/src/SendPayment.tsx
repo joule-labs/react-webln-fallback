@@ -4,7 +4,7 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Input from 'antd/lib/input';
 import Button from 'antd/lib/button';
-import Icon from 'antd/lib/icon';
+import Result from 'antd/lib/result';
 import Divider from 'antd/lib/divider';
 import { MethodComponentProps, WebLNMethod } from 'react-webln-fallback-core';
 import { WebLNProvider, SendPaymentResponse } from 'webln';
@@ -27,10 +27,20 @@ export default class SendPayment extends React.PureComponent<Props> {
       onCancel = this.handleApprove;
       content = (
         <div style={{ textAlign: 'center' }}>
-          <h2>{t('react-webln-fallback.send.success')}</h2>
-          <Button type="primary" size="large" onClick={this.handleApprove}>
-            {t('react-webln-fallback.common.continue')}
-          </Button>
+          <Result
+            status="success"
+            title={t('react-webln-fallback.send.success')}
+            extra={[
+              <Button
+                key="continue"
+                type="primary"
+                size="large"
+                onClick={this.handleApprove}
+              >
+                {t('react-webln-fallback.common.continue')}
+              </Button>
+            ]}
+          />
         </div>
       );
     } else {
