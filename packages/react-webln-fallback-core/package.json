@@ -1,6 +1,6 @@
 {
   "name": "react-webln-fallback-core",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "unpkg": "umd/index.min.js",

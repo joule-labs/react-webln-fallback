@@ -1,6 +1,6 @@
 {
   "name": "react-webln-fallback-reactstrap",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "unpkg": "umd/react-webln-fallback.min.js",
