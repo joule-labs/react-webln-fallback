@@ -7278,9 +7278,9 @@ qs@^6.9.4:
     side-channel "^1.0.4"
 
 qs@~6.5.2:
-  version "6.5.2"
-  resolved "https://registry.npmjs.org/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
-  integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
+  integrity sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==
 
 query-string@^4.1.0:
   version "4.3.4"
@@ -7792,52 +7792,52 @@ react-transition-group@^4.4.0, react-transition-group@^4.4.1:
     prop-types "^15.6.2"
 
 "react-webln-fallback-antd@file:packages/react-webln-fallback-antd":
-  version "0.1.4"
+  version "0.2.1"
   dependencies:
     qrcode.react "0.9.3"
-    react-webln-fallback-core "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-antd-0.1.4-3e2d9c61-0879-4025-a655-486e5dab5fa1-1622925820665/node_modules/react-webln-fallback-core"
+    react-webln-fallback-core "file:packages/react-webln-fallback-core"
 
 "react-webln-fallback-bootstrap@file:packages/react-webln-fallback-bootstrap":
-  version "0.1.4"
+  version "0.2.1"
   dependencies:
     "@types/i18next" "^12.1.0"
     qrcode.react "^0.9.3"
-    react-webln-fallback-core "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-bootstrap-0.1.4-1ef6b082-bfa7-4457-90a2-8f658e1e0459-1622925820672/node_modules/react-webln-fallback-core"
+    react-webln-fallback-core "file:packages/react-webln-fallback-core"
 
 "react-webln-fallback-core@file:packages/react-webln-fallback-core":
-  version "0.1.3"
+  version "0.2.0"
   dependencies:
     i18next "15.0.9"
     i18next-browser-languagedetector "3.0.1"
 
 "react-webln-fallback-demo@file:demo":
-  version "1.0.0"
+  version "0.2.1"
   dependencies:
-    react-webln-fallback-antd "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-demo-1.0.0-457732b8-4bae-4786-885d-31fa2ca10655-1622925820677/node_modules/packages/react-webln-fallback-antd"
-    react-webln-fallback-bootstrap "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-demo-1.0.0-457732b8-4bae-4786-885d-31fa2ca10655-1622925820677/node_modules/packages/react-webln-fallback-bootstrap"
-    react-webln-fallback-core "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-demo-1.0.0-457732b8-4bae-4786-885d-31fa2ca10655-1622925820677/node_modules/packages/react-webln-fallback-core"
-    react-webln-fallback-material-ui "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-demo-1.0.0-457732b8-4bae-4786-885d-31fa2ca10655-1622925820677/node_modules/packages/react-webln-fallback-material-ui"
-    react-webln-fallback-reactstrap "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-demo-1.0.0-457732b8-4bae-4786-885d-31fa2ca10655-1622925820677/node_modules/packages/react-webln-fallback-reactstrap"
-    react-webln-fallback-semantic-ui "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-demo-1.0.0-457732b8-4bae-4786-885d-31fa2ca10655-1622925820677/node_modules/packages/react-webln-fallback-semantic-ui"
+    react-webln-fallback-antd "file:packages/react-webln-fallback-antd"
+    react-webln-fallback-bootstrap "file:packages/react-webln-fallback-bootstrap"
+    react-webln-fallback-core "file:packages/react-webln-fallback-core"
+    react-webln-fallback-material-ui "file:packages/react-webln-fallback-material-ui"
+    react-webln-fallback-reactstrap "file:packages/react-webln-fallback-reactstrap"
+    react-webln-fallback-semantic-ui "file:packages/react-webln-fallback-semantic-ui"
 
 "react-webln-fallback-material-ui@file:packages/react-webln-fallback-material-ui":
-  version "0.1.4"
+  version "0.2.1"
   dependencies:
     qrcode.react "0.9.3"
-    react-webln-fallback-core "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-material-ui-0.1.4-0fe8118c-4abd-4932-98b6-8eeb5e723c44-1622925820680/node_modules/react-webln-fallback-core"
+    react-webln-fallback-core "file:packages/react-webln-fallback-core"
 
 "react-webln-fallback-reactstrap@file:packages/react-webln-fallback-reactstrap":
-  version "0.1.4"
+  version "0.2.1"
   dependencies:
     "@types/i18next" "^12.1.0"
     qrcode.react "^0.9.3"
-    react-webln-fallback-core "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-reactstrap-0.1.4-e1778f7d-cccf-4800-b4ce-3cb3401a36ae-1622925820682/node_modules/react-webln-fallback-core"
+    react-webln-fallback-core "file:packages/react-webln-fallback-core"
 
 "react-webln-fallback-semantic-ui@file:packages/react-webln-fallback-semantic-ui":
-  version "0.1.4"
+  version "0.2.1"
   dependencies:
     qrcode.react "0.9.3"
-    react-webln-fallback-core "file:../../Library/Caches/Yarn/v6/npm-react-webln-fallback-semantic-ui-0.1.4-f06dbc71-c2c1-4817-96d1-10dee60548bf-1622925820683/node_modules/react-webln-fallback-core"
+    react-webln-fallback-core "file:packages/react-webln-fallback-core"
 
 react@^17.0.2:
   version "17.0.2"
